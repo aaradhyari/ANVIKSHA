@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    font-family: 'Exo', sans-serif;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-mono-custom {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(66, 232, 155, 0.5), 0 0 40px rgba(66, 232, 155, 0.3);
+  }
+  .text-shadow-neon {
+    text-shadow: 0 0 10px rgba(66, 232, 155, 0.7), 0 0 30px rgba(66, 232, 155, 0.5);
+  }
+  .glass {
+    background: rgba(221, 251, 231, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(221, 251, 231, 0.12);
+  }
+  .glass-strong {
+    background: rgba(221, 251, 231, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(66, 232, 155, 0.2);
+  }
+  .glow-border {
+    box-shadow: 0 0 15px rgba(66, 232, 155, 0.15), inset 0 0 15px rgba(66, 232, 155, 0.05);
+  }
+  .glow-border-hover:hover {
+    box-shadow: 0 0 25px rgba(66, 232, 155, 0.3), inset 0 0 25px rgba(66, 232, 155, 0.1);
+  }
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(66, 232, 155, 0.4), 0 0 60px rgba(66, 232, 155, 0.1);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #42E89B, #1F3B2E, #E89A73);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-border {
+    border-image: linear-gradient(135deg, #42E89B, #1F3B2E) 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+::-webkit-scrollbar-thumb {
+  background: #42E89B;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1F3B2E;
+}
