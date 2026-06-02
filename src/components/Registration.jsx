@@ -3,23 +3,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const initialForm = {
   teamName: '',
-  members: ['', '', ''],
-  grade: '',
+  members: [
+    { name: '', grade: '' },
+    { name: '', grade: '' },
+    { name: '', grade: '' },
+  ],
   email: '',
   phone: '',
   school: '',
 };
 
+// 🔧 Replace with your deployed Google Apps Script web app URL
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwxMZfcLif19sRPVoFzRST6wcbHEDe1aYmrXEp8OBcDmSdNc_OiUIbq-8OlIpQD1I33/exec';
+
 export default function Registration() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const validate = () => {
     const newErrors = {};
     if (!form.teamName.trim()) newErrors.teamName = 'Team name required';
-    if (!form.members[0].trim()) newErrors.members = 'At least one member required';
-    if (!form.grade) newErrors.grade = 'Grade required';
+    if (!form.members[0].name.trim()) newErrors.members = 'At least one member required';
+    if (form.members[0].name.trim() && !form.members[0].grade) newErrors.memberGrade = 'Grade required for each member';
     if (!form.email.includes('@')) newErrors.email = 'Valid email required';
     if (!form.phone.trim()) newErrors.phone = 'Phone required';
     if (!form.school.trim()) newErrors.school = 'School required';
@@ -27,10 +35,35 @@ export default function Registration() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
+    setSubmitError('');
+    if (!validate()) return;
+
+    setSubmitting(true);
+    try {
+      const params = new URLSearchParams({
+        teamName: form.teamName,
+        member1: form.members[0]?.name || '',
+        member1Grade: form.members[0]?.grade || '',
+        member2: form.members[1]?.name || '',
+        member2Grade: form.members[1]?.grade || '',
+        member3: form.members[2]?.name || '',
+        member3Grade: form.members[2]?.grade || '',
+        email: form.email,
+        phone: form.phone,
+        school: form.school,
+      });
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: params,
+      });
       setSubmitted(true);
+    } catch {
+      setSubmitError('Failed to submit. Please try again.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -97,40 +130,41 @@ export default function Registration() {
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm text-frosted-mint/80 mb-1.5">Team Members (min 1)</label>
+                  <label className="block text-sm text-frosted-mint/80 mb-1.5">Team Members & Grades</label>
                   {form.members.map((member, i) => (
-                    <input
-                      key={i}
-                      type="text"
-                      value={member}
-                      onChange={(e) => {
-                        const members = [...form.members];
-                        members[i] = e.target.value;
-                        setForm((prev) => ({ ...prev, members }));
-                      }}
-                      className="w-full px-4 py-3 mb-2 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors"
-                      placeholder={`Member ${i + 1} name`}
-                    />
+                    <div key={i} className="flex gap-3 mb-2">
+                      <input
+                        type="text"
+                        value={member.name}
+                        onChange={(e) => {
+                          const members = [...form.members];
+                          members[i] = { ...members[i], name: e.target.value };
+                          setForm((prev) => ({ ...prev, members }));
+                        }}
+                        className="flex-1 px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors"
+                        placeholder={`Member ${i + 1} name`}
+                      />
+                      <select
+                        value={member.grade}
+                        onChange={(e) => {
+                          const members = [...form.members];
+                          members[i] = { ...members[i], grade: e.target.value };
+                          setForm((prev) => ({ ...prev, members }));
+                        }}
+                        className="w-28 px-3 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-[#505868] focus:border-neon-emerald focus:outline-none transition-colors text-sm"
+                      >
+                        <option value="" className="text-[#505868]">Grade</option>
+                        {[9, 10, 11, 12].map((g) => (
+                          <option key={g} value={g} className="text-[#505868]">{g}</option>
+                        ))}
+                      </select>
+                    </div>
                   ))}
                   {errors.members && <p className="text-solar-clay text-xs mt-1">{errors.members}</p>}
+                  {errors.memberGrade && <p className="text-solar-clay text-xs mt-1">{errors.memberGrade}</p>}
                 </div>
 
-                <div>
-                  <label className="block text-sm text-frosted-mint/80 mb-1.5">Grade/Class</label>
-                  <select
-                    value={form.grade}
-                    onChange={(e) => update('grade', e.target.value)}
-                    className="w-full px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint focus:border-neon-emerald focus:outline-none transition-colors"
-                  >
-                    <option value="">Select grade</option>
-                    {[9, 10, 11, 12].map((g) => (
-                      <option key={g} value={g}>Grade {g}</option>
-                    ))}
-                  </select>
-                  {errors.grade && <p className="text-solar-clay text-xs mt-1">{errors.grade}</p>}
-                </div>
-
-                <div>
+                <div className="md:col-span-2">
                   <label className="block text-sm text-frosted-mint/80 mb-1.5">School</label>
                   <input
                     type="text"
@@ -142,7 +176,7 @@ export default function Registration() {
                   {errors.school && <p className="text-solar-clay text-xs mt-1">{errors.school}</p>}
                 </div>
 
-                <div>
+                <div className="md:col-span-2">
                   <label className="block text-sm text-frosted-mint/80 mb-1.5">Email</label>
                   <input
                     type="email"
@@ -154,24 +188,28 @@ export default function Registration() {
                   {errors.email && <p className="text-solar-clay text-xs mt-1">{errors.email}</p>}
                 </div>
 
-                <div>
+                <div className="md:col-span-2">
                   <label className="block text-sm text-frosted-mint/80 mb-1.5">Phone Number</label>
                   <input
                     type="tel"
                     value={form.phone}
                     onChange={(e) => update('phone', e.target.value)}
                     className="w-full px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors"
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+91 1234 567890"
                   />
                   {errors.phone && <p className="text-solar-clay text-xs mt-1">{errors.phone}</p>}
                 </div>
               </div>
 
+              {submitError && (
+                <p className="text-solar-clay text-sm text-center">{submitError}</p>
+              )}
               <button
                 type="submit"
-                className="w-full py-4 text-lg font-semibold text-cosmic-navy bg-neon-emerald rounded-xl hover:bg-neon-emerald/90 transition-all duration-300 neon-glow"
+                disabled={submitting}
+                className="w-full py-4 text-lg font-semibold text-cosmic-navy bg-neon-emerald rounded-xl hover:bg-neon-emerald/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 neon-glow"
               >
-                Register Team
+                {submitting ? 'Submitting...' : 'Register Team'}
               </button>
             </motion.form>
           )}
