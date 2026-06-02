@@ -7,6 +7,7 @@ import CompetitionRounds from './components/CompetitionRounds';
 import Rulebook from './components/Rulebook';
 import JudgingCriteria from './components/JudgingCriteria';
 import Workshop from './components/Workshop';
+import Team from './components/Team';
 import Gallery from './components/Gallery';
 import Registration from './components/Registration';
 import Contact from './components/Contact';
@@ -24,6 +25,7 @@ export default function App() {
         <Rulebook />
         <JudgingCriteria />
         <Workshop />
+        <Team />
         <Gallery />
         <Registration />
         <Contact />
