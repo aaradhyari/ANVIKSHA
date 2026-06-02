@@ -26,7 +26,7 @@ export default function JudgingCriteria() {
           </h2>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-5">
+        <div className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-5">
           {criteria.map((item, i) => (
             <motion.div
               key={item.label}
@@ -34,13 +34,13 @@ export default function JudgingCriteria() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-xl p-5"
+              className="glass rounded-xl p-7"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-frosted-mint font-medium">{item.label}</span>
-                <span className="text-neon-emerald font-mono-custom text-sm">{item.value}%</span>
+                <span className="text-frosted-mint font-semibold text-lg">{item.label}</span>
+                <span className="text-neon-emerald font-mono-custom text-base">{item.value}%</span>
               </div>
-              <div className="w-full h-2 bg-cosmic-navy rounded-full overflow-hidden">
+              <div className="w-full h-3 bg-cosmic-navy rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${item.value}%` }}

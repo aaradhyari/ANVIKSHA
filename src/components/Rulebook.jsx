@@ -4,11 +4,11 @@ import { HiChevronDown } from 'react-icons/hi';
 
 const rules = [
   { q: 'Who can participate?', a: 'Any student from grades 9-12 enrolled in the school. Teams of 3-4 members.' },
-  { q: 'What is the registration fee?', a: 'Registration is free for all participants. Limited to first 30 teams.' },
   { q: 'How are teams evaluated?', a: 'Teams are judged on innovation, research depth, feasibility, presentation quality, teamwork, and Q&A performance.' },
   { q: 'Can we bring external materials?', a: 'Laptops and presentation tools are allowed. External references must be cited.' },
   { q: 'What is the dress code?', a: 'Smart casual / semi-formal. Team coordination is encouraged.' },
   { q: 'Are there prizes?', a: 'Yes. Winners receive trophies, certificates, and mentorship opportunities.' },
+  { q: 'Are mobile phones allowed?', a: 'Mobile phones are not permitted during competition rounds. However, laptops and tablets are allowed for presentations and research.' },
 ];
 
 export default function Rulebook() {
