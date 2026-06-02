@@ -11,7 +11,7 @@ const socials = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-32">
+    <section id="contact" className="relative pt-24 md:pt-32 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
