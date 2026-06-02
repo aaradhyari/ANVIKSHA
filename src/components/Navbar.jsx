@@ -71,7 +71,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass overflow-hidden"
+            className="md:hidden bg-cosmic-navy/90 backdrop-blur-lg overflow-hidden border-b border-neon-emerald/10"
           >
             <div className="px-4 py-4 space-y-2">
               {links.map((link) => (

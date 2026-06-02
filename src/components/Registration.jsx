@@ -114,7 +114,7 @@ export default function Registration() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onSubmit={handleSubmit}
-              className="max-w-2xl mx-auto glass rounded-2xl p-6 md:p-8 space-y-5"
+              className="max-w-2xl mx-auto glass rounded-2xl p-4 sm:p-6 md:p-8 space-y-5 overflow-hidden"
             >
               <div className="grid md:grid-cols-2 gap-5">
                 <div className="md:col-span-2">
@@ -132,7 +132,7 @@ export default function Registration() {
                 <div className="md:col-span-2">
                   <label className="block text-sm text-frosted-mint/80 mb-1.5">Team Members & Grades</label>
                   {form.members.map((member, i) => (
-                    <div key={i} className="flex gap-3 mb-2">
+                    <div key={i} className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
                       <input
                         type="text"
                         value={member.name}
@@ -151,7 +151,7 @@ export default function Registration() {
                           members[i] = { ...members[i], grade: e.target.value };
                           setForm((prev) => ({ ...prev, members }));
                         }}
-                        className="w-28 px-3 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-[#505868] focus:border-neon-emerald focus:outline-none transition-colors text-sm"
+                        className="w-full sm:w-28 px-3 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-[#505868] focus:border-neon-emerald focus:outline-none transition-colors text-sm"
                       >
                         <option value="" className="text-[#505868]">Grade</option>
                         {[9, 10, 11, 12].map((g) => (
