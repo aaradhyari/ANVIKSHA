@@ -10,7 +10,6 @@ const links = [
   { label: 'Judging', href: '#judging' },
   { label: 'Workshop', href: '#workshop' },
   { label: 'Team', href: '#team' },
-  { label: 'Gallery', href: '#gallery' },
   { label: 'Register', href: '#register' },
 ];
 
