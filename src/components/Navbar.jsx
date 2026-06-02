@@ -10,7 +10,6 @@ const links = [
   { label: 'Judging', href: '#judging' },
   { label: 'Workshop', href: '#workshop' },
   { label: 'Team', href: '#team' },
-  { label: 'Register', href: '#register' },
 ];
 
 export default function Navbar() {

@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 
 const members = [
   { name: 'Katyayani Saktawat', role: 'Club President', initials: 'KS', bio: 'Leading the vision for innovation and scientific excellence.' },
-  { name: 'Nandani Agrawal', role: 'Vice President', initials: 'NA', bio: 'Driving research initiatives and interdisciplinary collaboration.' },
+  { name: 'Nandani Agrawal', role: 'Management', initials: 'NA', bio: 'Driving research initiatives and interdisciplinary collaboration.' },
   { name: 'Aaradhya Rai', role: 'Technical Lead', initials: 'AR', bio: 'Building the tech infrastructure for all competition rounds.' },
   { name: 'Sanjan Gour', role: 'Design & Media', initials: 'SG', bio: 'Crafting the visual identity and event experience.' },
   { name: 'Kabir Singh', role: 'Events Coordinator', initials: 'KS', bio: 'Ensuring seamless execution of workshops and rounds.' },
@@ -46,17 +45,6 @@ export default function Team() {
               <h3 className="text-lg font-semibold text-frosted-mint">{member.name}</h3>
               <p className="text-sm text-solar-clay font-medium mt-0.5">{member.role}</p>
               <p className="text-xs text-silver-mist/50 mt-2 leading-relaxed">{member.bio}</p>
-              <div className="flex justify-center gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <a href="#" className="text-silver-mist/40 hover:text-neon-emerald transition-colors" aria-label={`${member.name} Instagram`}>
-                  <FaInstagram size={14} />
-                </a>
-                <a href="#" className="text-silver-mist/40 hover:text-neon-emerald transition-colors" aria-label={`${member.name} Twitter`}>
-                  <FaTwitter size={14} />
-                </a>
-                <a href="#" className="text-silver-mist/40 hover:text-neon-emerald transition-colors" aria-label={`${member.name} LinkedIn`}>
-                  <FaLinkedinIn size={14} />
-                </a>
-              </div>
             </motion.div>
           ))}
         </div>

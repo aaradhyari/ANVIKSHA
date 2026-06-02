@@ -1,13 +1,5 @@
 import { motion } from 'framer-motion';
 import { HiMail, HiLocationMarker } from 'react-icons/hi';
-import { FaInstagram, FaTwitter, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
-
-const socials = [
-  { icon: FaInstagram, label: 'Instagram', href: '#' },
-  { icon: FaTwitter, label: 'Twitter', href: '#' },
-  { icon: FaLinkedinIn, label: 'LinkedIn', href: '#' },
-  { icon: FaYoutube, label: 'YouTube', href: '#' },
-];
 
 export default function Contact() {
   return (
@@ -59,24 +51,6 @@ export default function Contact() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center gap-4"
-        >
-          {socials.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              className="w-12 h-12 rounded-xl glass flex items-center justify-center hover:bg-neon-emerald/20 hover:glow-border transition-all duration-300 cursor-pointer"
-              aria-label={social.label}
-            >
-              <social.icon className="w-5 h-5 text-silver-mist/70 hover:text-neon-emerald transition-colors" />
-            </a>
-          ))}
-        </motion.div>
 
         <div className="mt-12 max-w-3xl mx-auto glass rounded-2xl p-4 h-48 flex items-center justify-center">
           <div className="text-center">
