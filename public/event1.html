@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event 1: ABC - ANVIKSHA</title>
+    <title>ENIGMA: The Science of Deduction</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -14,214 +14,648 @@
         theme: {
           extend: {
             colors: {
-              'midnight-evergreen': '#1F3B2E',
-              'frosted-mint': '#DDFBE7',
-              'solar-clay': '#E89A73',
-              'arctic-ivory': '#FCFCFA',
-              'graphite-slate': '#383E42',
+              'midnight-noir': '#0D1117',
+              'detective-green': '#1F3B2E',
               'neon-emerald': '#42E89B',
-              'cosmic-navy': '#111827',
-              'silver-mist': '#D9E1E8',
+              'vintage-gold': '#C6A15B',
+              'fog-grey': '#B8BCC2',
+              'crime-red': '#9B2C2C',
+              'arctic-ivory': '#FCFCFA',
+              'glass-slate': '#232B36',
             },
-            fontFamily: { sans: ['Exo', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+            fontFamily: {
+              sans: ['Exo', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+              serif: ['Playfair Display', 'serif'],
+            },
           },
         },
       }
     </script>
     <style>
-      body { font-family: 'Exo', sans-serif; }
-      .glass { background: rgba(221, 251, 231, 0.08); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(221, 251, 231, 0.12); }
-      .glass-strong { background: rgba(221, 251, 231, 0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(66, 232, 155, 0.2); }
-      .glow-border { box-shadow: 0 0 15px rgba(66, 232, 155, 0.15), inset 0 0 15px rgba(66, 232, 155, 0.05); }
+      * { box-sizing: border-box; }
+      html { overflow-x: hidden; }
+      body { font-family: 'Exo', sans-serif; background: #0D1117; color: #B8BCC2; overflow-x: hidden; width: 100%; max-width: 100vw; }
+      img, svg { max-width: 100%; height: auto; }
+      canvas { display: block; }
+      .fog-layer { overflow: hidden; }
+      .glass { background: rgba(35, 43, 54, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(198, 161, 91, 0.15); }
+      .glass-dark { background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(66, 232, 155, 0.1); }
+      .glow-emerald { box-shadow: 0 0 15px rgba(66, 232, 155, 0.15), inset 0 0 15px rgba(66, 232, 155, 0.05); }
+      .glow-gold { box-shadow: 0 0 15px rgba(198, 161, 91, 0.15), inset 0 0 15px rgba(198, 161, 91, 0.05); }
       .neon-glow { box-shadow: 0 0 20px rgba(66, 232, 155, 0.4), 0 0 60px rgba(66, 232, 155, 0.1); }
-      .gradient-text { background: linear-gradient(135deg, #42E89B, #1F3B2E, #E89A73); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .gold-glow { box-shadow: 0 0 20px rgba(198, 161, 91, 0.3), 0 0 40px rgba(198, 161, 91, 0.1); }
+      .gradient-text { background: linear-gradient(135deg, #42E89B, #C6A15B, #9B2C2C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .gradient-gold { background: linear-gradient(135deg, #C6A15B, #42E89B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
       ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: #111827; }
+      ::-webkit-scrollbar-track { background: #0D1117; }
       ::-webkit-scrollbar-thumb { background: #42E89B; border-radius: 3px; }
+
+      @keyframes fog1 { 0%,100% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(10px); } }
+      @keyframes fog2 { 0%,100% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-15px); } }
+      @keyframes fog3 { 0%,100% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-40px) translateY(5px); } }
+      @keyframes pulse-glow { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+      @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+      @keyframes blink { 50% { border-color: transparent; } }
+      @keyframes string-pulse { 0%,100% { stroke-dashoffset: 1000; } 50% { stroke-dashoffset: 0; } }
+      @keyframes reveal-in { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+      .fog-layer { position: absolute; inset: 0; pointer-events: none; }
+      .fog-layer div { position: absolute; width: 200%; height: 200%; background: radial-gradient(ellipse at center, rgba(184,188,194,0.03) 0%, transparent 70%); }
+      .fog-1 { animation: fog1 20s ease-in-out infinite; top: -20%; left: -10%; }
+      .fog-2 { animation: fog2 25s ease-in-out infinite; top: -30%; left: 20%; }
+      .fog-3 { animation: fog3 30s ease-in-out infinite; top: -10%; left: -30%; }
+
+      .typewriter h1 { border-right: 3px solid #42E89B; animation: blink 0.8s step-end infinite; display: inline-block; min-width: 0; min-height: 1em; }
+
+      .string-line { stroke-dasharray: 1000; animation: string-pulse 4s ease-in-out infinite; }
+
+      .progress-fill { transition: width 1.5s ease-out; }
+
+      .card-hover:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(66, 232, 155, 0.2), 0 0 60px rgba(66, 232, 155, 0.05); }
+
+      .sherlock-silhouette { position: relative; }
+      .sherlock-silhouette::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(66,232,155,0.1) 0%, transparent 60%); }
+
+      .evidence-card { transition: all 0.4s ease; }
+      .evidence-card:hover { transform: scale(1.02); box-shadow: 0 0 25px rgba(155,44,44,0.2); }
+
+      @media (max-width: 640px) {
+        .typewriter h1 { font-size: 2.5rem; border-right: none; animation: none; display: block; min-width: 0; }
+      }
     </style>
   </head>
-  <body class="bg-cosmic-navy text-silver-mist min-h-screen">
-    <nav class="glass border-b border-neon-emerald/10 fixed top-0 left-0 right-0 z-50">
+  <body>
+    <canvas id="particles" class="fixed inset-0 pointer-events-none z-0" style="opacity:0.4"></canvas>
+
+    <div class="fog-layer z-[1]">
+      <div class="fog-1" style="background:radial-gradient(ellipse at 30% 50%, rgba(184,188,194,0.04) 0%, transparent 60%)"></div>
+      <div class="fog-2" style="background:radial-gradient(ellipse at 70% 30%, rgba(66,232,155,0.02) 0%, transparent 50%)"></div>
+      <div class="fog-3" style="background:radial-gradient(ellipse at 50% 80%, rgba(198,161,91,0.03) 0%, transparent 60%)"></div>
+    </div>
+
+    <div id="cursor-glow" class="fixed pointer-events-none z-[9999] w-10 h-10 rounded-full" style="background:radial-gradient(circle,rgba(66,232,155,0.3) 0%,transparent 70%);transform:translate(-50%,-50%);left:0;top:0;transition:transform 0.1s ease-out"></div>
+
+    <nav class="glass-dark fixed top-0 left-0 right-0 z-50 border-b border-vintage-gold/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
-        <a href="/" class="text-lg md:text-xl font-bold text-frosted-mint">
-          <span class="text-neon-emerald">&lt;</span>ANVIKSHA<span class="text-neon-emerald">/&gt;</span>
+        <a href="/" class="text-lg font-bold text-arctic-ivory font-serif">
+          <span class="text-vintage-gold">◆</span> ENIGMA
         </a>
-        <a href="#register-section" class="px-5 py-2 text-sm font-semibold text-cosmic-navy bg-neon-emerald rounded-lg hover:bg-neon-emerald/90 transition-all duration-200 neon-glow">Register Team</a>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="#about" class="text-sm text-fog-grey/80 hover:text-neon-emerald transition-colors">About</a>
+          <a href="#mysteries" class="text-sm text-fog-grey/80 hover:text-neon-emerald transition-colors">Mysteries</a>
+          <a href="#board" class="text-sm text-fog-grey/80 hover:text-neon-emerald transition-colors">Investigation</a>
+          <a href="#judging" class="text-sm text-fog-grey/80 hover:text-neon-emerald transition-colors">Criteria</a>
+          <a href="#register-section" class="px-5 py-2 text-sm font-semibold text-midnight-noir bg-neon-emerald rounded-lg hover:bg-neon-emerald/90 transition-all neon-glow">Register</a>
+        </div>
+        <button id="menu-btn" class="md:hidden text-arctic-ivory p-2" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden glass-dark px-4 py-4 space-y-2">
+        <a href="#about" class="block px-4 py-3 text-fog-grey/80 hover:text-neon-emerald rounded-lg">About</a>
+        <a href="#mysteries" class="block px-4 py-3 text-fog-grey/80 hover:text-neon-emerald rounded-lg">Mysteries</a>
+        <a href="#board" class="block px-4 py-3 text-fog-grey/80 hover:text-neon-emerald rounded-lg">Investigation</a>
+        <a href="#judging" class="block px-4 py-3 text-fog-grey/80 hover:text-neon-emerald rounded-lg">Criteria</a>
+        <a href="#register-section" class="block px-4 py-3 text-center font-semibold text-midnight-noir bg-neon-emerald rounded-lg">Register</a>
       </div>
     </nav>
 
-    <section class="pt-32 pb-20 px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <span class="text-neon-emerald text-sm uppercase tracking-[0.2em]">Event 1</span>
-          <h1 class="text-4xl md:text-6xl font-black text-frosted-mint mt-3">
-            <span class="gradient-text">ABC</span>
-          </h1>
-          <p class="text-lg text-silver-mist/70 mt-4 max-w-2xl mx-auto">
-            A thrilling innovation challenge where participants decode complex scientific mysteries through collaborative research and creative problem-solving.
-          </p>
-        </div>
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-midnight-noir via-detective-green/5 to-midnight-noir z-[1]"></div>
+      <div class="absolute top-1/4 left-1/3 w-96 h-96 bg-neon-emerald/5 rounded-full blur-[150px] animate-pulse" style="animation-duration:4s"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-vintage-gold/5 rounded-full blur-[120px] animate-pulse" style="animation-duration:6s"></div>
 
-        <div class="glass rounded-2xl p-8 glow-border mb-8">
-          <h2 class="text-2xl font-bold text-frosted-mint mb-4">Event Overview</h2>
-          <p class="text-silver-mist/70 leading-relaxed mb-4">
-            ABC is a premier event designed to test the limits of scientific inquiry and teamwork. Participants are presented with real-world anomalies and must work together to construct evidence-based hypotheses, design experiments, and present their findings to a panel of experts.
-          </p>
-          <p class="text-silver-mist/70 leading-relaxed">
-            This event encourages out-of-the-box thinking and rewards creativity, collaboration, and scientific rigor. Teams will compete in multiple stages, each designed to push their analytical and problem-solving abilities to the next level.
-          </p>
-        </div>
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="text-center lg:text-left">
+            <span class="inline-block px-4 py-1.5 mb-4 text-xs uppercase tracking-[0.3em] text-vintage-gold glass rounded-full border border-vintage-gold/20">Event 1</span>
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="glass rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-frosted-mint mb-3">Rules</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center gap-2 text-sm text-silver-mist/60"><span class="w-1.5 h-1.5 rounded-full bg-neon-emerald shrink-0"></span>Teams of 3-4 members</li>
-              <li class="flex items-center gap-2 text-sm text-silver-mist/60"><span class="w-1.5 h-1.5 rounded-full bg-neon-emerald shrink-0"></span>2 hours per round</li>
-              <li class="flex items-center gap-2 text-sm text-silver-mist/60"><span class="w-1.5 h-1.5 rounded-full bg-neon-emerald shrink-0"></span>External references must be cited</li>
-              <li class="flex items-center gap-2 text-sm text-silver-mist/60"><span class="w-1.5 h-1.5 rounded-full bg-neon-emerald shrink-0"></span>Top teams advance to finals</li>
-            </ul>
-          </div>
-          <div class="glass rounded-xl p-6">
-            <h3 class="text-lg font-semibold text-frosted-mint mb-3">Judging Criteria</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center gap-2 text-sm text-silver-mist/60"><span class="w-1.5 h-1.5 rounded-full bg-neon-emerald shrink-0"></span>Innovation & Creativity</li>
-              <li class="flex items-center gap-2 text-sm text-silver-mist/60"><span class="w-1.5 h-1.5 rounded-full bg-neon-emerald shrink-0"></span>Research Depth</li>
-              <li class="flex items-center gap-2 text-sm text-silver-mist/60"><span class="w-1.5 h-1.5 rounded-full bg-neon-emerald shrink-0"></span>Presentation Quality</li>
-              <li class="flex items-center gap-2 text-sm text-silver-mist/60"><span class="w-1.5 h-1.5 rounded-full bg-neon-emerald shrink-0"></span>Team Collaboration</li>
-            </ul>
-          </div>
-        </div>
+            <div class="typewriter">
+              <h1 id="enigma-title" class="text-5xl sm:text-7xl md:text-8xl font-black text-arctic-ivory font-serif" style="font-family:'Playfair Display',serif">&#8203;</h1>
+            </div>
+            <p class="text-xl md:text-2xl text-vintage-gold font-serif italic mt-2" style="font-family:'Playfair Display',serif">
+              The Science of Deduction
+            </p>
+            <div class="mt-4 h-8">
+              <span id="tagline" class="text-lg text-neon-emerald font-mono"></span>
+              <span class="text-neon-emerald font-mono animate-pulse">|</span>
+            </div>
 
-        <div id="register-section" class="mt-12">
-          <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-frosted-mint">Register for ABC</h2>
+            <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
+              <a href="#register-section" class="px-8 py-4 text-lg font-semibold text-midnight-noir bg-neon-emerald rounded-xl hover:bg-neon-emerald/90 transition-all duration-300 neon-glow">
+                Enter the Investigation
+              </a>
+              <a href="#about" class="px-8 py-4 text-lg font-semibold text-arctic-ivory glass rounded-xl hover:bg-glass-slate/80 transition-all duration-300 glow-gold border border-vintage-gold/20">
+                The Case File
+              </a>
+            </div>
           </div>
 
-          <div id="success-message" class="hidden max-w-md mx-auto text-center glass rounded-2xl p-8 glow-border">
-            <div class="w-16 h-16 rounded-full bg-neon-emerald/20 mx-auto mb-4 flex items-center justify-center">
-              <svg class="w-8 h-8 text-neon-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          <div class="hidden lg:flex justify-center relative">
+            <div class="relative w-80 h-96">
+              <div class="absolute inset-0 bg-gradient-to-b from-vintage-gold/10 via-transparent to-midnight-noir rounded-2xl"></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                <div class="text-8xl mb-4">🔍</div>
+                <div class="glass rounded-xl p-4 border border-neon-emerald/20 glow-emerald">
+                  <div class="text-xs text-neon-emerald font-mono uppercase tracking-wider">Case File #001</div>
+                  <div class="text-lg font-serif text-vintage-gold mt-1">The Unknown</div>
+                </div>
+                <div class="mt-6 flex gap-3 justify-center">
+                  <div class="w-2 h-2 rounded-full bg-crime-red animate-pulse" style="animation-duration:1.5s"></div>
+                  <div class="w-2 h-2 rounded-full bg-neon-emerald animate-pulse" style="animation-duration:2s"></div>
+                  <div class="w-2 h-2 rounded-full bg-vintage-gold animate-pulse" style="animation-duration:1.8s"></div>
+                </div>
+              </div>
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 320 384">
+                <circle cx="160" cy="192" r="140" fill="none" stroke="rgba(66,232,155,0.1)" stroke-width="1" stroke-dasharray="4 4" class="animate-spin" style="transform-origin:160px 192px;animation-duration:30s" />
+                <circle cx="160" cy="192" r="100" fill="none" stroke="rgba(198,161,91,0.08)" stroke-width="1" stroke-dasharray="2 6" class="animate-spin" style="transform-origin:160px 192px;animation-duration:20s;animation-direction:reverse" />
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-frosted-mint mb-2">Registration Successful!</h3>
-            <p class="text-silver-mist/60">Your team has been registered. Check your email for confirmation.</p>
           </div>
+        </div>
+      </div>
 
-          <form id="reg-form" class="max-w-2xl mx-auto glass rounded-2xl p-4 sm:p-6 md:p-8 space-y-5 overflow-hidden" onsubmit="return handleSubmit(event)">
-            <div class="grid md:grid-cols-2 gap-5">
-              <div class="md:col-span-2">
-                <label class="block text-sm text-frosted-mint/80 mb-1.5">Team Name</label>
-                <input id="teamName" type="text" class="w-full px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="Enter team name" required />
-                <p id="teamName-error" class="text-solar-clay text-xs mt-1 hidden">Team name required</p>
-              </div>
-
-              <div class="md:col-span-2">
-                <label class="block text-sm text-frosted-mint/80 mb-1.5">Team Members & Grades</label>
-                <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
-                  <input id="m1-name" type="text" class="flex-1 px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="Member 1 name" required />
-                  <select id="m1-grade" class="w-full sm:w-28 px-3 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-[#505868] focus:border-neon-emerald focus:outline-none transition-colors text-sm">
-                    <option value="">Grade</option>
-                    <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
-                  </select>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
-                  <input id="m2-name" type="text" class="flex-1 px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="Member 2 name" />
-                  <select id="m2-grade" class="w-full sm:w-28 px-3 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-[#505868] focus:border-neon-emerald focus:outline-none transition-colors text-sm">
-                    <option value="">Grade</option>
-                    <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
-                  </select>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
-                  <input id="m3-name" type="text" class="flex-1 px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="Member 3 name" />
-                  <select id="m3-grade" class="w-full sm:w-28 px-3 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-[#505868] focus:border-neon-emerald focus:outline-none transition-colors text-sm">
-                    <option value="">Grade</option>
-                    <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
-                  </select>
-                </div>
-                <p id="members-error" class="text-solar-clay text-xs mt-1 hidden">At least one member required</p>
-              </div>
-
-              <div class="md:col-span-2">
-                <label class="block text-sm text-frosted-mint/80 mb-1.5">School</label>
-                <input id="school" type="text" class="w-full px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="School name" required />
-                <p id="school-error" class="text-solar-clay text-xs mt-1 hidden">School required</p>
-              </div>
-
-              <div class="md:col-span-2">
-                <label class="block text-sm text-frosted-mint/80 mb-1.5">Email</label>
-                <input id="email" type="email" class="w-full px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="your@email.com" required />
-                <p id="email-error" class="text-solar-clay text-xs mt-1 hidden">Valid email required</p>
-              </div>
-
-              <div class="md:col-span-2">
-                <label class="block text-sm text-frosted-mint/80 mb-1.5">Phone Number</label>
-                <input id="phone" type="tel" class="w-full px-4 py-3 bg-cosmic-navy border border-neon-emerald/20 rounded-xl text-frosted-mint placeholder-silver-mist/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="+91 1234 567890" required />
-                <p id="phone-error" class="text-solar-clay text-xs mt-1 hidden">Phone required</p>
-              </div>
-            </div>
-
-            <p id="submit-error" class="text-solar-clay text-sm text-center hidden">Failed to submit. Please try again.</p>
-            <button id="submit-btn" type="submit" class="w-full py-4 text-lg font-semibold text-cosmic-navy bg-neon-emerald rounded-xl hover:bg-neon-emerald/90 transition-all duration-300 neon-glow">Register Team</button>
-          </form>
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-center">
+        <span class="text-xs text-fog-grey/40 uppercase tracking-widest">Scroll to investigate</span>
+        <div class="mt-2 animate-bounce text-fog-grey/40">
+          <svg class="w-5 h-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
         </div>
       </div>
     </section>
 
-    <footer class="py-8 border-t border-neon-emerald/10 text-center">
-      <p class="text-silver-mist/30 text-xs">&copy; 2026 Innovation Club. All rights reserved.</p>
+    <section id="about" class="relative py-24 md:py-32 z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+          <span class="text-neon-emerald text-xs uppercase tracking-[0.3em] font-mono">About the Round</span>
+          <h2 class="text-3xl md:text-5xl font-bold text-arctic-ivory mt-3 font-serif">
+            The <span class="gradient-gold">Investigation</span> Begins
+          </h2>
+          <p class="mt-6 text-fog-grey/70 max-w-3xl mx-auto text-lg leading-relaxed">
+            Participants step into the shoes of scientific detectives, investigating modern-day mysteries
+            using logic, deduction, and innovation. Each team must analyze evidence, form hypotheses,
+            and present their findings before a panel of expert judges.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="glass rounded-2xl p-6 card-hover transition-all duration-300 border border-vintage-gold/10">
+            <div class="w-12 h-12 rounded-xl bg-crime-red/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-crime-red" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-arctic-ivory font-serif">Deduction</h3>
+            <p class="text-sm text-fog-grey/60 mt-2">Apply logical reasoning to unravel complex mysteries.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 card-hover transition-all duration-300 border border-vintage-gold/10">
+            <div class="w-12 h-12 rounded-xl bg-neon-emerald/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-neon-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-arctic-ivory font-serif">Investigation</h3>
+            <p class="text-sm text-fog-grey/60 mt-2">Gather and analyze evidence from multiple sources.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 card-hover transition-all duration-300 border border-vintage-gold/10">
+            <div class="w-12 h-12 rounded-xl bg-vintage-gold/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-vintage-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-arctic-ivory font-serif">Innovation</h3>
+            <p class="text-sm text-fog-grey/60 mt-2">Think beyond the obvious to find creative solutions.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 card-hover transition-all duration-300 border border-vintage-gold/10">
+            <div class="w-12 h-12 rounded-xl bg-vintage-gold/10 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-vintage-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-arctic-ivory font-serif">Presentation</h3>
+            <p class="text-sm text-fog-grey/60 mt-2">Present compelling cases with clarity and conviction.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mysteries" class="relative py-24 md:py-32 z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+          <span class="text-neon-emerald text-xs uppercase tracking-[0.3em] font-mono">Mystery Categories</span>
+          <h2 class="text-3xl md:text-5xl font-bold text-arctic-ivory mt-3 font-serif">
+            Your <span class="gradient-gold">Case</span> Can Be
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          <div class="group glass rounded-2xl p-6 card-hover transition-all duration-300 border border-crime-red/10 text-center">
+            <div class="w-16 h-16 rounded-full bg-crime-red/10 mx-auto mb-4 flex items-center justify-center group-hover:bg-crime-red/20 transition-colors">
+              <svg class="w-8 h-8 text-crime-red" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="text-base font-semibold text-arctic-ivory font-serif">Environmental Mysteries</h3>
+            <p class="text-xs text-fog-grey/60 mt-2">Unravel ecological puzzles and climate phenomena.</p>
+          </div>
+          <div class="group glass rounded-2xl p-6 card-hover transition-all duration-300 border border-neon-emerald/10 text-center">
+            <div class="w-16 h-16 rounded-full bg-neon-emerald/10 mx-auto mb-4 flex items-center justify-center group-hover:bg-neon-emerald/20 transition-colors">
+              <svg class="w-8 h-8 text-neon-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
+            </div>
+            <h3 class="text-base font-semibold text-arctic-ivory font-serif">Space & Cosmos</h3>
+            <p class="text-xs text-fog-grey/60 mt-2">Explore cosmic anomalies and astronomical riddles.</p>
+          </div>
+          <div class="group glass rounded-2xl p-6 card-hover transition-all duration-300 border border-vintage-gold/10 text-center">
+            <div class="w-16 h-16 rounded-full bg-vintage-gold/10 mx-auto mb-4 flex items-center justify-center group-hover:bg-vintage-gold/20 transition-colors">
+              <svg class="w-8 h-8 text-vintage-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3 class="text-base font-semibold text-arctic-ivory font-serif">Human Biology</h3>
+            <p class="text-xs text-fog-grey/60 mt-2">Investigate medical mysteries and biological puzzles.</p>
+          </div>
+          <div class="group glass rounded-2xl p-6 card-hover transition-all duration-300 border border-neon-emerald/10 text-center">
+            <div class="w-16 h-16 rounded-full bg-neon-emerald/10 mx-auto mb-4 flex items-center justify-center group-hover:bg-neon-emerald/20 transition-colors">
+              <svg class="w-8 h-8 text-neon-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="text-base font-semibold text-arctic-ivory font-serif">Technology & AI</h3>
+            <p class="text-xs text-fog-grey/60 mt-2">Decode digital enigmas and AI conundrums.</p>
+          </div>
+          <div class="group glass rounded-2xl p-6 card-hover transition-all duration-300 border border-crime-red/10 text-center">
+            <div class="w-16 h-16 rounded-full bg-crime-red/10 mx-auto mb-4 flex items-center justify-center group-hover:bg-crime-red/20 transition-colors">
+              <svg class="w-8 h-8 text-crime-red" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="text-base font-semibold text-arctic-ivory font-serif">Climate Anomalies</h3>
+            <p class="text-xs text-fog-grey/60 mt-2">Analyze weather patterns and climate shifts.</p>
+          </div>
+          <div class="group glass rounded-2xl p-6 card-hover transition-all duration-300 border border-vintage-gold/10 text-center">
+            <div class="w-16 h-16 rounded-full bg-vintage-gold/10 mx-auto mb-4 flex items-center justify-center group-hover:bg-vintage-gold/20 transition-colors">
+              <svg class="w-8 h-8 text-vintage-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <h3 class="text-base font-semibold text-arctic-ivory font-serif">Unsolved Phenomena</h3>
+            <p class="text-xs text-fog-grey/60 mt-2">Tackle science's greatest unanswered questions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="board" class="relative py-24 md:py-32 z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+          <span class="text-neon-emerald text-xs uppercase tracking-[0.3em] font-mono">Investigation Board</span>
+          <h2 class="text-3xl md:text-5xl font-bold text-arctic-ivory mt-3 font-serif">
+            The <span class="gradient-gold">Evidence</span> Wall
+          </h2>
+        </div>
+
+        <div class="relative glass rounded-3xl p-6 md:p-10 border border-crime-red/20" style="background:rgba(13,17,23,0.9)">
+          <svg class="absolute inset-0 w-full h-full pointer-events-none" style="opacity:0.3">
+            <line x1="20%" y1="30%" x2="50%" y2="15%" stroke="#9B2C2C" stroke-width="1.5" stroke-dasharray="6 4" class="string-line" />
+            <line x1="50%" y1="15%" x2="80%" y2="40%" stroke="#9B2C2C" stroke-width="1.5" stroke-dasharray="6 4" class="string-line" style="animation-delay:1s" />
+            <line x1="20%" y1="30%" x2="35%" y2="70%" stroke="#9B2C2C" stroke-width="1.5" stroke-dasharray="6 4" class="string-line" style="animation-delay:2s" />
+            <line x1="80%" y1="40%" x2="65%" y2="75%" stroke="#9B2C2C" stroke-width="1.5" stroke-dasharray="6 4" class="string-line" style="animation-delay:0.5s" />
+          </svg>
+
+          <div class="grid sm:grid-cols-3 gap-4 relative z-10">
+            <div class="evidence-card glass rounded-xl p-4 border border-crime-red/20 text-center">
+              <div class="w-full h-24 rounded-lg bg-gradient-to-br from-detective-green/20 to-midnight-noir flex items-center justify-center mb-3 border border-vintage-gold/10">
+                <svg class="w-10 h-10 text-vintage-gold/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+              <span class="text-xs text-crime-red font-mono uppercase tracking-wider">Evidence A</span>
+              <p class="text-sm text-fog-grey/70 mt-1">Anomaly detected in atmospheric data</p>
+            </div>
+            <div class="evidence-card glass rounded-xl p-4 border border-vintage-gold/20 text-center">
+              <div class="w-full h-24 rounded-lg bg-gradient-to-br from-vintage-gold/10 to-midnight-noir flex items-center justify-center mb-3 border border-vintage-gold/10">
+                <span class="text-4xl font-serif text-vintage-gold/30">∫</span>
+              </div>
+              <span class="text-xs text-neon-emerald font-mono uppercase tracking-wider">Formula</span>
+              <p class="text-sm text-fog-grey/70 mt-1">Quantum fluctuation equation</p>
+            </div>
+            <div class="evidence-card glass rounded-xl p-4 border border-neon-emerald/20 text-center">
+              <div class="w-full h-24 rounded-lg bg-gradient-to-br from-neon-emerald/10 to-midnight-noir flex items-center justify-center mb-3 border border-vintage-gold/10">
+                <svg class="w-10 h-10 text-neon-emerald/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <span class="text-xs text-neon-emerald font-mono uppercase tracking-wider">Case File</span>
+              <p class="text-sm text-fog-grey/70 mt-1">Report #42 — Unidentified Signal</p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-4 relative z-10">
+            <div class="evidence-card glass rounded-xl p-4 border border-crime-red/10 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-crime-red/10 flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-crime-red" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+              </div>
+              <div>
+                <span class="text-xs text-crime-red font-mono uppercase">Fingerprint Match</span>
+                <p class="text-sm text-fog-grey/60 mt-0.5">Partial match found in database — 94% confidence</p>
+              </div>
+            </div>
+            <div class="evidence-card glass rounded-xl p-4 border border-neon-emerald/10 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-neon-emerald/10 flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-neon-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+              </div>
+              <div>
+                <span class="text-xs text-neon-emerald font-mono uppercase">Newspaper Clip</span>
+                <p class="text-sm text-fog-grey/60 mt-0.5">"Scientists Baffled by Recurring Anomaly" — The Chronicle</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 text-center relative z-10">
+            <span class="inline-block text-2xs text-fog-grey/30 font-mono uppercase tracking-[0.5em]">◆ Classified — Eyes Only ◆</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="judging" class="relative py-24 md:py-32 z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+          <span class="text-neon-emerald text-xs uppercase tracking-[0.3em] font-mono">Judging Criteria</span>
+          <h2 class="text-3xl md:text-5xl font-bold text-arctic-ivory mt-3 font-serif">
+            The <span class="gradient-gold">Verification</span> Process
+          </h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-4" id="progress-container">
+          <div class="glass rounded-xl p-5 border border-vintage-gold/10">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-arctic-ivory font-medium font-serif">Research</span>
+              <span class="text-neon-emerald font-mono text-sm" id="val-0">0%</span>
+            </div>
+            <div class="w-full h-2.5 bg-midnight-noir rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-detective-green to-neon-emerald progress-fill" style="width:0%;box-shadow:0 0 10px rgba(66,232,155,0.3)" data-target="90"></div>
+            </div>
+          </div>
+          <div class="glass rounded-xl p-5 border border-vintage-gold/10">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-arctic-ivory font-medium font-serif">Deduction Skills</span>
+              <span class="text-neon-emerald font-mono text-sm" id="val-1">0%</span>
+            </div>
+            <div class="w-full h-2.5 bg-midnight-noir rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-detective-green to-vintage-gold progress-fill" style="width:0%;box-shadow:0 0 10px rgba(198,161,91,0.3)" data-target="85"></div>
+            </div>
+          </div>
+          <div class="glass rounded-xl p-5 border border-vintage-gold/10">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-arctic-ivory font-medium font-serif">Innovation</span>
+              <span class="text-neon-emerald font-mono text-sm" id="val-2">0%</span>
+            </div>
+            <div class="w-full h-2.5 bg-midnight-noir rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-vintage-gold to-neon-emerald progress-fill" style="width:0%;box-shadow:0 0 10px rgba(66,232,155,0.3)" data-target="95"></div>
+            </div>
+          </div>
+          <div class="glass rounded-xl p-5 border border-vintage-gold/10">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-arctic-ivory font-medium font-serif">Presentation</span>
+              <span class="text-neon-emerald font-mono text-sm" id="val-3">0%</span>
+            </div>
+            <div class="w-full h-2.5 bg-midnight-noir rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-crime-red to-vintage-gold progress-fill" style="width:0%;box-shadow:0 0 10px rgba(198,161,91,0.3)" data-target="80"></div>
+            </div>
+          </div>
+          <div class="glass rounded-xl p-5 border border-vintage-gold/10">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-arctic-ivory font-medium font-serif">Scientific Accuracy</span>
+              <span class="text-neon-emerald font-mono text-sm" id="val-4">0%</span>
+            </div>
+            <div class="w-full h-2.5 bg-midnight-noir rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-neon-emerald to-crime-red progress-fill" style="width:0%;box-shadow:0 0 10px rgba(155,44,44,0.3)" data-target="88"></div>
+            </div>
+          </div>
+          <div class="glass rounded-xl p-5 border border-vintage-gold/10">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-arctic-ivory font-medium font-serif">Q&A Performance</span>
+              <span class="text-neon-emerald font-mono text-sm" id="val-5">0%</span>
+            </div>
+            <div class="w-full h-2.5 bg-midnight-noir rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-vintage-gold to-detective-green progress-fill" style="width:0%;box-shadow:0 0 10px rgba(31,59,46,0.3)" data-target="75"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="register-section" class="relative py-24 md:py-32 z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+          <span class="text-neon-emerald text-xs uppercase tracking-[0.3em] font-mono">Registration</span>
+          <h2 class="text-3xl md:text-5xl font-bold text-arctic-ivory mt-3 font-serif">
+            Join the <span class="gradient-gold">Investigation</span>
+          </h2>
+        </div>
+
+        <div id="success-message" class="hidden max-w-md mx-auto text-center glass rounded-2xl p-8 glow-emerald border border-neon-emerald/20">
+          <div class="w-16 h-16 rounded-full bg-neon-emerald/20 mx-auto mb-4 flex items-center justify-center">
+            <svg class="w-8 h-8 text-neon-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold text-arctic-ivory mb-2 font-serif">Case Filed!</h3>
+          <p class="text-fog-grey/60">Your team has been registered. Check your evidence — we mean email — for confirmation.</p>
+        </div>
+
+        <form id="reg-form" class="max-w-2xl mx-auto glass rounded-2xl p-4 sm:p-6 md:p-8 space-y-5 overflow-hidden border border-vintage-gold/10" onsubmit="return handleSubmit(event)">
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="md:col-span-2">
+              <label class="block text-sm text-fog-grey/80 mb-1.5 font-mono text-xs uppercase tracking-wider">Team Name</label>
+              <input id="teamName" type="text" class="w-full px-4 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-arctic-ivory placeholder-fog-grey/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="Enter team name" required />
+              <p id="teamName-error" class="text-crime-red text-xs mt-1 hidden">Team name required</p>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm text-fog-grey/80 mb-1.5 font-mono text-xs uppercase tracking-wider">Team Members</label>
+              <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
+                <input id="m1-name" type="text" class="flex-1 px-4 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-arctic-ivory placeholder-fog-grey/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="Member 1 name" required />
+                <select id="m1-grade" class="w-full sm:w-28 px-3 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-[#808894] focus:border-neon-emerald focus:outline-none transition-colors text-sm">
+                  <option value="" class="text-fog-grey/50">Grade</option>
+                  <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                </select>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
+                <input id="m2-name" type="text" class="flex-1 px-4 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-arctic-ivory placeholder-fog-grey/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="Member 2 name" />
+                <select id="m2-grade" class="w-full sm:w-28 px-3 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-[#808894] focus:border-neon-emerald focus:outline-none transition-colors text-sm">
+                  <option value="" class="text-fog-grey/50">Grade</option>
+                  <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                </select>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <input id="m3-name" type="text" class="flex-1 px-4 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-arctic-ivory placeholder-fog-grey/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="Member 3 name" />
+                <select id="m3-grade" class="w-full sm:w-28 px-3 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-[#808894] focus:border-neon-emerald focus:outline-none transition-colors text-sm">
+                  <option value="" class="text-fog-grey/50">Grade</option>
+                  <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                </select>
+              </div>
+              <p id="members-error" class="text-crime-red text-xs mt-1 hidden">At least one member required</p>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm text-fog-grey/80 mb-1.5 font-mono text-xs uppercase tracking-wider">School Name</label>
+              <input id="school" type="text" class="w-full px-4 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-arctic-ivory placeholder-fog-grey/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="School name" required />
+              <p id="school-error" class="text-crime-red text-xs mt-1 hidden">School required</p>
+            </div>
+            <div>
+              <label class="block text-sm text-fog-grey/80 mb-1.5 font-mono text-xs uppercase tracking-wider">Email</label>
+              <input id="email" type="email" class="w-full px-4 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-arctic-ivory placeholder-fog-grey/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="your@email.com" required />
+              <p id="email-error" class="text-crime-red text-xs mt-1 hidden">Valid email required</p>
+            </div>
+            <div>
+              <label class="block text-sm text-fog-grey/80 mb-1.5 font-mono text-xs uppercase tracking-wider">Phone</label>
+              <input id="phone" type="tel" class="w-full px-4 py-3 bg-midnight-noir border border-vintage-gold/20 rounded-xl text-arctic-ivory placeholder-fog-grey/30 focus:border-neon-emerald focus:outline-none transition-colors" placeholder="+91 1234 567890" required />
+              <p id="phone-error" class="text-crime-red text-xs mt-1 hidden">Phone required</p>
+            </div>
+          </div>
+          <p id="submit-error" class="text-crime-red text-sm text-center hidden">Failed to submit. Please try again.</p>
+          <button id="submit-btn" type="submit" class="w-full py-4 text-lg font-semibold text-midnight-noir bg-neon-emerald rounded-xl hover:bg-neon-emerald/90 transition-all duration-300 neon-glow">Submit Your Case</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="relative py-24 md:py-32 z-10">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <span class="text-neon-emerald text-xs uppercase tracking-[0.3em] font-mono">Final Reveal</span>
+        <h2 class="text-3xl md:text-6xl font-bold text-arctic-ivory mt-6 font-serif italic leading-tight">
+          "The Truth Lies<br />Beyond the Obvious."
+        </h2>
+        <div class="mt-8 flex items-center justify-center gap-2 text-xs text-fog-grey/40">
+          <span class="w-12 h-px bg-vintage-gold/20"></span>
+          <span class="font-mono uppercase tracking-widest">— Sherlock Holmes</span>
+          <span class="w-12 h-px bg-vintage-gold/20"></span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-8 border-t border-vintage-gold/10 text-center">
+      <div class="max-w-7xl mx-auto px-4">
+        <p class="text-lg font-bold text-arctic-ivory font-serif">ENIGMA</p>
+        <p class="text-xs text-fog-grey/40 font-mono uppercase tracking-wider mt-1">The Science of Deduction</p>
+        <p class="text-xs text-fog-grey/30 mt-4">&copy; 2026 Innovation Club. All rights reserved.</p>
+      </div>
     </footer>
 
     <script>
       const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwxMZfcLif19sRPVoFzRST6wcbHEDe1aYmrXEp8OBcDmSdNc_OiUIbq-8OlIpQD1I33/exec';
 
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const particles = Array.from({ length: 50 }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 2 + 0.5, alpha: Math.random() * 0.4 + 0.1,
+      }));
+
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of particles) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(66,232,155,${p.alpha})`;
+          ctx.fill();
+          for (const p2 of particles) {
+            const dx = p.x - p2.x, dy = p.y - p2.y, d = Math.sqrt(dx*dx+dy*dy);
+            if (d < 100) {
+              ctx.strokeStyle = `rgba(66,232,155,${0.03*(1-d/100)})`;
+              ctx.lineWidth = 0.5;
+              ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      const cursor = document.getElementById('cursor-glow');
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        cursor.style.left = '0';
+        cursor.style.top = '0';
+      });
+
+      const tagline = document.getElementById('tagline');
+      const text = 'Decode. Deduce. Discover.';
+      let idx = 0;
+      function typeWriter() {
+        if (idx < text.length) {
+          tagline.textContent += text[idx];
+          idx++;
+          setTimeout(typeWriter, 80);
+        }
+      }
+      setTimeout(typeWriter, 2000);
+
+      const enigmaTitle = document.getElementById('enigma-title');
+      const enigmaText = 'ENIGMA';
+      let enigmaIdx = 0;
+      function typeEnigma() {
+        if (enigmaIdx < enigmaText.length) {
+          enigmaTitle.textContent += enigmaText[enigmaIdx];
+          enigmaIdx++;
+          setTimeout(typeEnigma, 160);
+        }
+      }
+      if (window.innerWidth > 640) {
+        setTimeout(typeEnigma, 1000);
+      } else {
+        enigmaTitle.textContent = enigmaText;
+      }
+
+      document.getElementById('menu-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+
+      function revealCheck() {
+        document.querySelectorAll('.reveal').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) el.style.animation = 'reveal-in 0.8s ease forwards';
+        });
+      }
+      window.addEventListener('scroll', revealCheck);
+      revealCheck();
+
+      const progressBars = document.querySelectorAll('.progress-fill');
+      function animateBars() {
+        progressBars.forEach((bar, i) => {
+          const rect = bar.closest('.glass').getBoundingClientRect();
+          if (rect.top < window.innerHeight - 50 && bar.style.width === '0%') {
+            const target = parseInt(bar.dataset.target);
+            let current = 0;
+            const interval = setInterval(() => {
+              current++;
+              bar.style.width = current + '%';
+              document.getElementById('val-' + i).textContent = current + '%';
+              if (current >= target) clearInterval(interval);
+            }, 15);
+          }
+        });
+      }
+      window.addEventListener('scroll', animateBars);
+      animateBars();
+
       function $(id) { return document.getElementById(id); }
       function hide(id) { $(id).classList.add('hidden'); }
       function show(id) { $(id).classList.remove('hidden'); }
 
-      function handleSubmit(e) {
+      async function handleSubmit(e) {
         e.preventDefault();
         hide('submit-error');
         let valid = true;
-
         if (!$('teamName').value.trim()) { show('teamName-error'); valid = false; } else { hide('teamName-error'); }
-
         if (!$('m1-name').value.trim()) { show('members-error'); valid = false; } else { hide('members-error'); }
-
         if (!$('school').value.trim()) { show('school-error'); valid = false; } else { hide('school-error'); }
-
-        const email = $('email').value;
-        if (!email.includes('@')) { show('email-error'); valid = false; } else { hide('email-error'); }
-
+        if (!$('email').value.includes('@')) { show('email-error'); valid = false; } else { hide('email-error'); }
         if (!$('phone').value.trim()) { show('phone-error'); valid = false; } else { hide('phone-error'); }
-
         if (!valid) return false;
 
         const btn = $('submit-btn');
-        btn.disabled = true;
-        btn.textContent = 'Submitting...';
+        btn.disabled = true; btn.textContent = 'Submitting...';
 
         const params = new URLSearchParams({
           teamName: $('teamName').value,
           member1: $('m1-name').value, member1Grade: $('m1-grade').value,
           member2: $('m2-name').value, member2Grade: $('m2-grade').value,
           member3: $('m3-name').value, member3Grade: $('m3-grade').value,
-          email: email,
-          phone: $('phone').value,
-          school: $('school').value,
+          email: $('email').value, phone: $('phone').value, school: $('school').value,
         });
 
-        fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: params })
-          .then(() => {
-            hide('reg-form');
-            show('success-message');
-          })
-          .catch(() => {
-            show('submit-error');
-            btn.disabled = false;
-            btn.textContent = 'Register Team';
-          });
-
+        try {
+          await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: params });
+          hide('reg-form'); show('success-message');
+        } catch {
+          show('submit-error'); btn.disabled = false; btn.textContent = 'Submit Your Case';
+        }
         return false;
       }
     </script>
