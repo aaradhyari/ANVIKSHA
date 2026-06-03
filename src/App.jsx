@@ -3,12 +3,11 @@ import GlowCursor from './components/GlowCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import CompetitionRounds from './components/CompetitionRounds';
+import Events from './components/Events';
 import Rulebook from './components/Rulebook';
 import JudgingCriteria from './components/JudgingCriteria';
 import Workshop from './components/Workshop';
 import Team from './components/Team';
-import Registration from './components/Registration';
 import Contact from './components/Contact';
 
 export default function App() {
@@ -20,12 +19,11 @@ export default function App() {
       <main className="relative z-10">
         <Hero />
         <About />
-        <CompetitionRounds />
+        <Events />
         <Rulebook />
         <JudgingCriteria />
         <Workshop />
         <Team />
-        <Registration />
         <Contact />
       </main>
     </div>

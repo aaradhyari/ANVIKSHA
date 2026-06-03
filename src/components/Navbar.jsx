@@ -5,7 +5,7 @@ import { HiMenu, HiX } from 'react-icons/hi';
 const links = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
-  { label: 'Rounds', href: '#rounds' },
+  { label: 'Events', href: '#events' },
   { label: 'Rules', href: '#rules' },
   { label: 'Judging', href: '#judging' },
   { label: 'Workshop', href: '#workshop' },
@@ -46,12 +46,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#register"
-              className="ml-3 px-5 py-2 text-sm font-semibold text-cosmic-navy bg-neon-emerald rounded-lg hover:bg-neon-emerald/90 transition-all duration-200 neon-glow"
-            >
-              Register
-            </a>
           </div>
 
           <button
@@ -83,13 +77,6 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#register"
-                onClick={() => setOpen(false)}
-                className="block px-4 py-3 text-center font-semibold text-cosmic-navy bg-neon-emerald rounded-lg mt-2"
-              >
-                Register Now
-              </a>
             </div>
           </motion.div>
         )}
