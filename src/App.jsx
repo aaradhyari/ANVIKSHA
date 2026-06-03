@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import ParticlesBackground from './components/ParticlesBackground';
 import GlowCursor from './components/GlowCursor';
 import Navbar from './components/Navbar';
@@ -26,6 +27,7 @@ export default function App() {
         <Team />
         <Contact />
       </main>
+      <Analytics />
     </div>
   );
 }
