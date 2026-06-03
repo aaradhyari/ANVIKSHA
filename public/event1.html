@@ -36,9 +36,25 @@
       * { box-sizing: border-box; }
       html { overflow-x: hidden; }
       body { font-family: 'Exo', sans-serif; background: #0D1117; color: #B8BCC2; overflow-x: hidden; width: 100%; max-width: 100vw; }
+      body::before {
+        content: '';
+        position: fixed; inset: 0;
+        pointer-events: none; z-index: 0;
+        background-image:
+          radial-gradient(ellipse at 15% 20%, rgba(198,161,91,0.04) 0%, transparent 50%),
+          radial-gradient(ellipse at 85% 75%, rgba(155,44,44,0.03) 0%, transparent 50%),
+          repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(198,161,91,0.015) 50px, rgba(198,161,91,0.015) 51px),
+          repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(198,161,91,0.015) 50px, rgba(198,161,91,0.015) 51px),
+          radial-gradient(circle at 15% 22%, rgba(198,161,91,0.08) 2px, transparent 2px),
+          radial-gradient(circle at 38% 55%, rgba(198,161,91,0.08) 2px, transparent 2px),
+          radial-gradient(circle at 62% 28%, rgba(198,161,91,0.08) 2px, transparent 2px),
+          radial-gradient(circle at 85% 42%, rgba(198,161,91,0.08) 2px, transparent 2px),
+          radial-gradient(circle at 22% 78%, rgba(198,161,91,0.08) 2px, transparent 2px),
+          radial-gradient(circle at 75% 82%, rgba(198,161,91,0.08) 2px, transparent 2px),
+          radial-gradient(circle at 50% 50%, rgba(198,161,91,0.08) 2px, transparent 2px);
+      }
       img, svg { max-width: 100%; height: auto; }
       canvas { display: block; }
-      .fog-layer { overflow: hidden; }
       .glass { background: rgba(35, 43, 54, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(198, 161, 91, 0.15); }
       .glass-dark { background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(66, 232, 155, 0.1); }
       .glow-emerald { box-shadow: 0 0 15px rgba(66, 232, 155, 0.15), inset 0 0 15px rgba(66, 232, 155, 0.05); }
@@ -50,22 +66,13 @@
 
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: #0D1117; }
-      ::-webkit-scrollbar-thumb { background: #42E89B; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb { background: #9B2C2C; border-radius: 3px; }
 
-      @keyframes fog1 { 0%,100% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-30px) translateY(10px); } }
-      @keyframes fog2 { 0%,100% { transform: translateX(0) translateY(0); } 50% { transform: translateX(20px) translateY(-15px); } }
-      @keyframes fog3 { 0%,100% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-40px) translateY(5px); } }
       @keyframes pulse-glow { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
       @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
       @keyframes blink { 50% { border-color: transparent; } }
       @keyframes string-pulse { 0%,100% { stroke-dashoffset: 1000; } 50% { stroke-dashoffset: 0; } }
       @keyframes reveal-in { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-      .fog-layer { position: absolute; inset: 0; pointer-events: none; }
-      .fog-layer div { position: absolute; width: 200%; height: 200%; background: radial-gradient(ellipse at center, rgba(184,188,194,0.03) 0%, transparent 70%); }
-      .fog-1 { animation: fog1 20s ease-in-out infinite; top: -20%; left: -10%; }
-      .fog-2 { animation: fog2 25s ease-in-out infinite; top: -30%; left: 20%; }
-      .fog-3 { animation: fog3 30s ease-in-out infinite; top: -10%; left: -30%; }
 
       .typewriter h1 { border-right: 3px solid #42E89B; animation: blink 0.8s step-end infinite; display: inline-block; min-width: 0; min-height: 1em; }
 
@@ -89,11 +96,39 @@
   <body>
     <canvas id="particles" class="fixed inset-0 pointer-events-none z-0" style="opacity:0.4"></canvas>
 
-    <div class="fog-layer z-[1]">
-      <div class="fog-1" style="background:radial-gradient(ellipse at 30% 50%, rgba(184,188,194,0.04) 0%, transparent 60%)"></div>
-      <div class="fog-2" style="background:radial-gradient(ellipse at 70% 30%, rgba(66,232,155,0.02) 0%, transparent 50%)"></div>
-      <div class="fog-3" style="background:radial-gradient(ellipse at 50% 80%, rgba(198,161,91,0.03) 0%, transparent 60%)"></div>
-    </div>
+    <svg class="fixed inset-0 w-full h-full pointer-events-none z-[1]" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" style="opacity:0.2">
+      <defs>
+        <filter id="string-blur"><feGaussianBlur stdDeviation="0.3"/></filter>
+      </defs>
+      <g filter="url(#string-blur)" stroke="#9B2C2C" stroke-width="0.35" fill="none">
+        <path id="s1" d="M 10 22 Q 28 42 38 18 Q 52 32 68 22 Q 82 45 92 25" />
+        <path id="s2" d="M 38 18 Q 48 48 58 28 Q 68 55 82 38" />
+        <path id="s3" d="M 10 22 Q 18 52 28 42 Q 38 72 50 55 Q 62 82 75 62 Q 88 78 92 25" />
+        <path id="s4" d="M 58 28 Q 48 62 38 55 Q 28 80 15 78" />
+        <path d="M 15 78 Q 25 62 50 55 Q 68 38 82 38 Q 88 32 92 25" stroke-width="0.2" opacity="0.6"/>
+        <path d="M 28 42 Q 38 48 48 48 Q 58 40 68 22" stroke-width="0.2" opacity="0.6"/>
+        <path d="M 10 22 Q 5 40 15 78" stroke-width="0.25" opacity="0.5"/>
+        <path d="M 92 25 Q 88 55 75 62" stroke-width="0.25" opacity="0.5"/>
+        <path d="M 58 28 Q 55 48 48 48" stroke-width="0.15" opacity="0.4"/>
+        <path d="M 28 42 Q 22 62 15 78" stroke-width="0.15" opacity="0.4"/>
+      </g>
+      <g fill="#C6A15B">
+        <circle cx="10" cy="22" r="1.2"/><circle cx="38" cy="18" r="1.2"/>
+        <circle cx="58" cy="28" r="1.2"/><circle cx="68" cy="22" r="1.2"/>
+        <circle cx="82" cy="38" r="1.2"/><circle cx="92" cy="25" r="1.2"/>
+        <circle cx="15" cy="78" r="1"/><circle cx="28" cy="42" r="1"/>
+        <circle cx="48" cy="48" r="1"/><circle cx="50" cy="55" r="1"/>
+        <circle cx="75" cy="62" r="1"/>
+      </g>
+      <g fill="#9B2C2C">
+        <circle cx="10" cy="22" r="0.5"/><circle cx="38" cy="18" r="0.5"/>
+        <circle cx="58" cy="28" r="0.5"/><circle cx="68" cy="22" r="0.5"/>
+        <circle cx="82" cy="38" r="0.5"/><circle cx="92" cy="25" r="0.5"/>
+        <circle cx="15" cy="78" r="0.4"/><circle cx="28" cy="42" r="0.4"/>
+        <circle cx="48" cy="48" r="0.4"/><circle cx="50" cy="55" r="0.4"/>
+        <circle cx="75" cy="62" r="0.4"/>
+      </g>
+    </svg>
 
     <div id="cursor-glow" class="fixed pointer-events-none z-[9999] w-10 h-10 rounded-full" style="background:radial-gradient(circle,rgba(66,232,155,0.3) 0%,transparent 70%);transform:translate(-50%,-50%);left:0;top:0;transition:transform 0.1s ease-out"></div>
 
@@ -107,6 +142,7 @@
           <a href="#mysteries" class="text-sm text-fog-grey/80 hover:text-neon-emerald transition-colors">Mysteries</a>
           <a href="#board" class="text-sm text-fog-grey/80 hover:text-neon-emerald transition-colors">Investigation</a>
           <a href="#judging" class="text-sm text-fog-grey/80 hover:text-neon-emerald transition-colors">Criteria</a>
+          <a href="/" class="text-sm text-fog-grey/40 hover:text-vintage-gold transition-colors">← Anviksha</a>
           <a href="#register-section" class="px-5 py-2 text-sm font-semibold text-midnight-noir bg-neon-emerald rounded-lg hover:bg-neon-emerald/90 transition-all neon-glow">Register</a>
         </div>
         <button id="menu-btn" class="md:hidden text-arctic-ivory p-2" aria-label="Menu">
@@ -118,6 +154,7 @@
         <a href="#mysteries" class="block px-4 py-3 text-fog-grey/80 hover:text-neon-emerald rounded-lg">Mysteries</a>
         <a href="#board" class="block px-4 py-3 text-fog-grey/80 hover:text-neon-emerald rounded-lg">Investigation</a>
         <a href="#judging" class="block px-4 py-3 text-fog-grey/80 hover:text-neon-emerald rounded-lg">Criteria</a>
+        <a href="/" class="block px-4 py-3 text-fog-grey/40 hover:text-vintage-gold rounded-lg text-sm">← Anviksha</a>
         <a href="#register-section" class="block px-4 py-3 text-center font-semibold text-midnight-noir bg-neon-emerald rounded-lg">Register</a>
       </div>
     </nav>

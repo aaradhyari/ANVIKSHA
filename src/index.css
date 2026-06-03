@@ -49,6 +49,9 @@
   .gradient-border {
     border-image: linear-gradient(135deg, #42E89B, #1F3B2E) 1;
   }
+  .dark-map {
+    filter: invert(0.9) hue-rotate(180deg);
+  }
 }
 
 ::-webkit-scrollbar {

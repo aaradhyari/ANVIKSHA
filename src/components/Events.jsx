@@ -4,17 +4,17 @@ import { HiLightningBolt, HiCubeTransparent } from 'react-icons/hi';
 const events = [
   {
     icon: HiLightningBolt,
-    title: 'Event 1: ABC',
+    title: 'Event 1: Enigma',
     summary: 'A thrilling innovation challenge where participants decode complex scientific mysteries through collaborative research and creative problem-solving.',
     link: '/event1.html',
-    registerLabel: 'Register for ABC',
+    registerLabel: 'Register for Enigma',
   },
   {
     icon: HiCubeTransparent,
-    title: 'Event 2: CBA',
+    title: 'Event 2: Innovista',
     summary: 'An advanced engineering and design sprint where teams build prototypes to solve real-world sustainability challenges under time constraints.',
     link: '/event2.html',
-    registerLabel: 'Register for CBA',
+    registerLabel: 'Register for Innovista',
   },
 ];
 

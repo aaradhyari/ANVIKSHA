@@ -34,28 +34,28 @@
     <style>
       * { box-sizing: border-box; }
       html { overflow-x: hidden; scroll-behavior: smooth; }
-      body { font-family: 'Exo', sans-serif; background: #F5E9D3; color: #1B1B1B; overflow-x: hidden; width: 100%; max-width: 100vw; }
+      body { font-family: 'Exo', sans-serif; background: #111111; color: #F5E9D3; overflow-x: hidden; width: 100%; max-width: 100vw; }
 
-      .glass-parchment { background: rgba(245, 233, 211, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(92, 64, 51, 0.12); }
-      .glass-sage { background: rgba(221, 229, 208, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(46, 139, 87, 0.15); }
-      .glass-dark { background: rgba(27, 27, 27, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(201, 162, 39, 0.15); }
+      .glass-parchment { background: rgba(27, 27, 27, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(201, 162, 39, 0.12); }
+      .glass-sage { background: rgba(27, 27, 27, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(46, 139, 87, 0.15); }
+      .glass-dark { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(201, 162, 39, 0.15); }
 
       .glow-gold { box-shadow: 0 0 20px rgba(201, 162, 39, 0.3), 0 0 40px rgba(201, 162, 39, 0.1); }
       .glow-emerald { box-shadow: 0 0 20px rgba(46, 139, 87, 0.3), 0 0 40px rgba(46, 139, 87, 0.1); }
       .glow-blueprint { box-shadow: 0 0 15px rgba(62, 92, 118, 0.25), 0 0 30px rgba(62, 92, 118, 0.08); }
 
-      .gradient-title { background: linear-gradient(135deg, #5C4033, #C9A227, #2E8B57); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-      .gradient-gold { background: linear-gradient(135deg, #C9A227, #5C4033); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .gradient-title { background: linear-gradient(135deg, #C9A227, #2E8B57, #F5E9D3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .gradient-gold { background: linear-gradient(135deg, #C9A227, #F5E9D3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
       .gradient-emerald { background: linear-gradient(135deg, #2E8B57, #3E5C76); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-      .sketch-border { border: 2px solid #5C4033; border-radius: 12px; position: relative; }
-      .sketch-border::before { content: ''; position: absolute; inset: -4px; border: 1px dashed rgba(92, 64, 51, 0.2); border-radius: 16px; pointer-events: none; }
+      .sketch-border { border: 2px solid #C9A227; border-radius: 12px; position: relative; }
+      .sketch-border::before { content: ''; position: absolute; inset: -4px; border: 1px dashed rgba(201, 162, 39, 0.25); border-radius: 16px; pointer-events: none; }
 
-      .renaissance-divider { height: 2px; background: linear-gradient(90deg, transparent, #5C4033, #C9A227, #5C4033, transparent); }
+      .renaissance-divider { height: 2px; background: linear-gradient(90deg, transparent, #C9A227, #2E8B57, #C9A227, transparent); }
 
       ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: #F5E9D3; }
-      ::-webkit-scrollbar-thumb { background: #5C4033; border-radius: 3px; }
+      ::-webkit-scrollbar-track { background: #111111; }
+      ::-webkit-scrollbar-thumb { background: #C9A227; border-radius: 3px; }
 
       @keyframes float-slow { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(2deg); } }
       @keyframes float-gear { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -75,8 +75,6 @@
       .card-hover { transition: all 0.4s ease; }
       .card-hover:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(201, 162, 39, 0.15), 0 0 60px rgba(201, 162, 39, 0.05); }
 
-      .progress-ring { transition: stroke-dashoffset 1.5s ease-out; }
-
       .theme-card:nth-child(1) { animation-delay: 0s; }
       .theme-card:nth-child(2) { animation-delay: 0.1s; }
       .theme-card:nth-child(3) { animation-delay: 0.2s; }
@@ -84,58 +82,58 @@
       .theme-card:nth-child(5) { animation-delay: 0.4s; }
       .theme-card:nth-child(6) { animation-delay: 0.5s; }
 
-      .ink-annotation { font-family: 'Playfair Display', serif; font-style: italic; color: #5C4033; opacity: 0.6; font-size: 0.75rem; transform: rotate(-2deg); }
-
-      
+      .ink-annotation { font-family: 'Playfair Display', serif; font-style: italic; color: #C9A227; opacity: 0.6; font-size: 0.75rem; transform: rotate(-2deg); }
     </style>
   </head>
   <body>
 
     <!-- ====== NAV ====== -->
-    <nav class="glass-parchment fixed top-0 left-0 right-0 z-50 border-b border-renaissance/10">
+    <nav class="glass-dark fixed top-0 left-0 right-0 z-50 border-b border-gold/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
-        <a href="/" class="text-lg md:text-xl font-bold text-renaissance font-serif">
-          <span class="text-gold">✦</span> INNOVISTA
+        <a href="/" class="text-lg md:text-xl font-bold text-gold font-serif">
+          <span class="text-emerald">✦</span> INNOVISTA
         </a>
         <div class="hidden md:flex items-center gap-6">
-          <a href="#about" class="text-sm text-ink/70 hover:text-emerald transition-colors">About</a>
-          <a href="#theme" class="text-sm text-ink/70 hover:text-emerald transition-colors">Theme</a>
-          <a href="#rounds" class="text-sm text-ink/70 hover:text-emerald transition-colors">Rounds</a>
-          <a href="#register-section" class="px-5 py-2 text-sm font-semibold text-parchment bg-emerald rounded-lg hover:bg-emerald/90 transition-all glow-emerald">Register</a>
+          <a href="#about" class="text-sm text-parchment/70 hover:text-emerald transition-colors">About</a>
+          <a href="#theme" class="text-sm text-parchment/70 hover:text-emerald transition-colors">Theme</a>
+          <a href="#rounds" class="text-sm text-parchment/70 hover:text-emerald transition-colors">Rounds</a>
+          <a href="/" class="text-sm text-parchment/40 hover:text-gold transition-colors">← Anviksha</a>
+          <a href="#register-section" class="px-5 py-2 text-sm font-semibold text-ink bg-emerald rounded-lg hover:bg-emerald/90 transition-all glow-emerald">Register</a>
         </div>
-        <button id="menu-btn" class="md:hidden text-renaissance p-2" aria-label="Menu">
+        <button id="menu-btn" class="md:hidden text-gold p-2" aria-label="Menu">
           <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
-      <div id="mobile-menu" class="hidden md:hidden glass-parchment px-4 py-4 space-y-2 border-t border-renaissance/10">
-        <a href="#about" class="block px-4 py-3 text-ink/70 hover:text-emerald rounded-lg">About</a>
-        <a href="#theme" class="block px-4 py-3 text-ink/70 hover:text-emerald rounded-lg">Theme</a>
-        <a href="#rounds" class="block px-4 py-3 text-ink/70 hover:text-emerald rounded-lg">Rounds</a>
-        <a href="#register-section" class="block px-4 py-3 text-center font-semibold text-parchment bg-emerald rounded-lg">Register</a>
+      <div id="mobile-menu" class="hidden md:hidden glass-dark px-4 py-4 space-y-2 border-t border-gold/10">
+        <a href="#about" class="block px-4 py-3 text-parchment/70 hover:text-emerald rounded-lg">About</a>
+        <a href="#theme" class="block px-4 py-3 text-parchment/70 hover:text-emerald rounded-lg">Theme</a>
+        <a href="#rounds" class="block px-4 py-3 text-parchment/70 hover:text-emerald rounded-lg">Rounds</a>
+        <a href="/" class="block px-4 py-3 text-parchment/40 hover:text-gold rounded-lg text-sm">← Anviksha</a>
+        <a href="#register-section" class="block px-4 py-3 text-center font-semibold text-ink bg-emerald rounded-lg">Register</a>
       </div>
     </nav>
 
     <!-- ====== HERO ====== -->
-    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" style="background: linear-gradient(160deg, #F5E9D3 0%, #DDE5D0 40%, #F5E9D3 100%);">
-      <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, #5C4033 40px, #5C4033 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, #5C4033 40px, #5C4033 41px);"></div>
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" style="background: linear-gradient(160deg, #0D0D0D 0%, #1B1B1B 40%, #111111 100%);">
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, #C9A227 40px, #C9A227 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, #C9A227 40px, #C9A227 41px);"></div>
 
       <!-- Floating decorations -->
-      <div class="absolute top-20 left-[8%] w-16 h-16 opacity-20 float">
+      <div class="absolute top-20 left-[8%] w-16 h-16 opacity-30 float">
         <svg viewBox="0 0 100 100" class="w-full h-full text-gold" fill="none" stroke="currentColor" stroke-width="1.5">
           <circle cx="50" cy="50" r="40" stroke-dasharray="4 4"/>
           <circle cx="50" cy="50" r="25" stroke-dasharray="2 6"/>
           <line x1="50" y1="10" x2="50" y2="90"/><line x1="10" y1="50" x2="90" y2="50"/>
         </svg>
       </div>
-      <div class="absolute bottom-32 right-[10%] w-20 h-20 opacity-20 float-2">
+      <div class="absolute bottom-32 right-[10%] w-20 h-20 opacity-30 float-2">
         <svg viewBox="0 0 100 100" class="w-full h-full text-blueprint" fill="none" stroke="currentColor" stroke-width="1.5">
           <polygon points="50,5 95,30 95,70 50,95 5,70 5,30"/>
           <circle cx="50" cy="50" r="15"/>
           <line x1="50" y1="35" x2="50" y2="65"/><line x1="35" y1="50" x2="65" y2="50"/>
         </svg>
       </div>
-      <div class="absolute top-1/3 right-[15%] w-12 h-12 opacity-15 gear">
-        <svg viewBox="0 0 100 100" class="w-full h-full text-renaissance" fill="none" stroke="currentColor" stroke-width="1.5">
+      <div class="absolute top-1/3 right-[15%] w-12 h-12 opacity-25 gear">
+        <svg viewBox="0 0 100 100" class="w-full h-full text-gold" fill="none" stroke="currentColor" stroke-width="1.5">
           <circle cx="50" cy="50" r="25" stroke-dasharray="5 5"/>
           <circle cx="50" cy="50" r="8"/>
           <rect x="45" y="2" width="10" height="20" rx="2"/>
@@ -144,7 +142,7 @@
           <rect x="78" y="45" width="20" height="10" rx="2"/>
         </svg>
       </div>
-      <div class="absolute bottom-1/4 left-[12%] w-14 h-14 opacity-15 gear-reverse">
+      <div class="absolute bottom-1/4 left-[12%] w-14 h-14 opacity-25 gear-reverse">
         <svg viewBox="0 0 100 100" class="w-full h-full text-terracotta" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="20" y="20" width="60" height="60" rx="8" stroke-dasharray="3 3"/>
           <circle cx="50" cy="50" r="20"/>
@@ -152,39 +150,38 @@
         </svg>
       </div>
 
-      <div class="absolute top-1/2 left-[5%] opacity-5 text-6xl font-serif text-renaissance select-none" style="transform: rotate(-15deg);">∫</div>
-      <div class="absolute bottom-1/3 right-[8%] opacity-5 text-6xl font-serif text-blueprint select-none" style="transform: rotate(10deg);">∑</div>
-      <div class="absolute top-[15%] right-[20%] opacity-5 text-4xl font-serif text-gold select-none" style="transform: rotate(-5deg);">πr²</div>
-      <div class="absolute bottom-[20%] left-[18%] opacity-5 text-4xl font-serif text-renaissance select-none" style="transform: rotate(8deg);">E=mc²</div>
+      <div class="absolute top-1/2 left-[5%] opacity-10 text-6xl font-serif text-gold select-none" style="transform: rotate(-15deg);">∫</div>
+      <div class="absolute bottom-1/3 right-[8%] opacity-10 text-6xl font-serif text-blueprint select-none" style="transform: rotate(10deg);">∑</div>
+      <div class="absolute top-[15%] right-[20%] opacity-10 text-4xl font-serif text-emerald select-none" style="transform: rotate(-5deg);">πr²</div>
+      <div class="absolute bottom-[20%] left-[18%] opacity-10 text-4xl font-serif text-gold select-none" style="transform: rotate(8deg);">E=mc²</div>
 
-      <!-- Leonardo silhouette area -->
-      <div class="absolute right-0 top-0 bottom-0 w-1/3 hidden lg:block opacity-10">
-        <div class="absolute bottom-0 right-10 text-[300px] leading-none select-none text-renaissance font-serif">🜁</div>
-        <div class="absolute top-1/3 right-20 text-[200px] leading-none select-none opacity-30 text-gold font-serif" style="transform: rotate(10deg);">⚙</div>
+      <div class="absolute right-0 top-0 bottom-0 w-1/3 hidden lg:block opacity-20">
+        <div class="absolute bottom-0 right-10 text-[300px] leading-none select-none text-gold font-serif">🜁</div>
+        <div class="absolute top-1/3 right-20 text-[200px] leading-none select-none opacity-40 text-emerald font-serif" style="transform: rotate(10deg);">⚙</div>
       </div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="text-center lg:text-left">
-            <span class="inline-block px-4 py-1.5 mb-4 text-xs uppercase tracking-[0.3em] text-renaissance glass-parchment rounded-full border border-gold/20" style="font-family:'Playfair Display',serif">Event 2</span>
+            <span class="inline-block px-4 py-1.5 mb-4 text-xs uppercase tracking-[0.3em] text-gold glass-dark rounded-full border border-gold/20" style="font-family:'Playfair Display',serif">Event 2</span>
 
-            <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-ink font-serif leading-none">
+            <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-parchment font-serif leading-none">
               <span class="gradient-title">INNOVISTA</span>
             </h1>
-            <p class="text-2xl md:text-3xl text-renaissance font-serif italic mt-2">
+            <p class="text-2xl md:text-3xl text-gold font-serif italic mt-2">
               From Discovery to Design
             </p>
             <div class="mt-3 renaissance-divider max-w-xs mx-auto lg:mx-0"></div>
 
-            <p class="text-base md:text-lg text-ink/60 mt-4 max-w-xl leading-relaxed font-sans">
+            <p class="text-base md:text-lg text-parchment/60 mt-4 max-w-xl leading-relaxed font-sans">
               "The Hidden Glitches of Our Local Ecosystem"
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
-              <a href="#about" class="px-8 py-4 text-lg font-semibold text-parchment bg-emerald rounded-xl hover:bg-emerald/90 transition-all duration-300 glow-emerald" style="font-family:'Exo',sans-serif">
+              <a href="#about" class="px-8 py-4 text-lg font-semibold text-ink bg-emerald rounded-xl hover:bg-emerald/90 transition-all duration-300 glow-emerald" style="font-family:'Exo',sans-serif">
                 Begin the Journey
               </a>
-              <a href="#theme" class="px-8 py-4 text-lg font-semibold text-renaissance glass-parchment rounded-xl hover:bg-renaissance/5 transition-all duration-300 border border-gold/20" style="font-family:'Exo',sans-serif">
+              <a href="#theme" class="px-8 py-4 text-lg font-semibold text-gold glass-dark rounded-xl hover:bg-gold/5 transition-all duration-300 border border-gold/20" style="font-family:'Exo',sans-serif">
                 Explore the Theme
               </a>
             </div>
@@ -192,23 +189,23 @@
 
           <div class="hidden lg:flex justify-center relative">
             <div class="relative w-80 h-96">
-              <div class="absolute inset-0 bg-gradient-to-b from-gold/5 via-transparent to-parchment rounded-2xl"></div>
+              <div class="absolute inset-0 bg-gradient-to-b from-gold/10 via-transparent to-transparent rounded-2xl"></div>
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="text-center">
                   <div class="relative w-40 h-40 mx-auto mb-4">
-                    <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full gear opacity-30 text-gold">
+                    <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full gear opacity-40 text-gold">
                       <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 8"/>
                       <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 6"/>
                       <line x1="100" y1="20" x2="100" y2="180" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 4"/>
                       <line x1="20" y1="100" x2="180" y2="100" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 4"/>
                     </svg>
-                    <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full gear-reverse opacity-20 text-blueprint">
+                    <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full gear-reverse opacity-30 text-blueprint">
                       <rect x="40" y="40" width="120" height="120" rx="20" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 4"/>
                       <polygon points="100,40 120,80 160,80 130,110 140,150 100,130 60,150 70,110 40,80 80,80" fill="none" stroke="currentColor" stroke-width="0.8"/>
                     </svg>
                   </div>
-                  <div class="glass-parchment rounded-xl p-4 border border-gold/20" style="box-shadow: 0 0 30px rgba(201,162,39,0.1);">
-                    <div class="text-xs text-renaissance font-serif uppercase tracking-wider">Innovation</div>
+                  <div class="glass-dark rounded-xl p-4 border border-gold/20" style="box-shadow: 0 0 30px rgba(201,162,39,0.15);">
+                    <div class="text-xs text-gold font-serif uppercase tracking-wider">Innovation</div>
                     <div class="text-lg font-serif text-emerald mt-1">From Discovery to Design</div>
                   </div>
                   <div class="mt-6 flex gap-3 justify-center">
@@ -224,126 +221,126 @@
       </div>
 
       <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <span class="text-xs text-renaissance/40 uppercase tracking-widest font-sans">Scroll to explore</span>
-        <div class="mt-2 animate-bounce text-renaissance/40">
+        <span class="text-xs text-parchment/30 uppercase tracking-widest font-sans">Scroll to explore</span>
+        <div class="mt-2 animate-bounce text-parchment/30">
           <svg class="w-5 h-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
         </div>
       </div>
     </section>
 
     <!-- ====== ABOUT ====== -->
-    <section id="about" class="relative py-24 md:py-32" style="background:#F5E9D3;">
+    <section id="about" class="relative py-24 md:py-32" style="background:#0D0D0D;">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <span class="text-emerald text-xs uppercase tracking-[0.3em] font-sans">About the Event</span>
-          <h2 class="text-3xl md:text-5xl font-bold text-ink mt-3 font-serif">
+          <h2 class="text-3xl md:text-5xl font-bold text-parchment mt-3 font-serif">
             The <span class="gradient-gold">Journey</span> Begins
           </h2>
           <div class="w-16 h-0.5 bg-gold mx-auto mt-4"></div>
         </div>
 
         <div class="max-w-4xl mx-auto glass-parchment rounded-2xl p-6 md:p-10 sketch-border">
-          <p class="text-ink/70 text-lg leading-relaxed font-sans">
-            <span class="text-4xl font-serif text-renaissance float-start mr-3 leading-none">I</span>NNOVISTA is a journey from observation and discovery to innovation and design, encouraging participants to identify hidden problems within local ecosystems and create meaningful solutions. Drawing inspiration from Leonardo da Vinci's insatiable curiosity and Renaissance ingenuity, this competition challenges teams to observe nature's subtle disruptions, hypothesize solutions, and build prototypes that bridge the gap between scientific understanding and real-world impact.
+          <p class="text-parchment/70 text-lg leading-relaxed font-sans">
+            <span class="text-4xl font-serif text-gold float-start mr-3 leading-none">I</span>NNOVISTA is a journey from observation and discovery to innovation and design, encouraging participants to identify hidden problems within local ecosystems and create meaningful solutions. Drawing inspiration from Leonardo da Vinci's insatiable curiosity and Renaissance ingenuity, this competition challenges teams to observe nature's subtle disruptions, hypothesize solutions, and build prototypes that bridge the gap between scientific understanding and real-world impact.
           </p>
-          <div class="mt-6 flex items-center gap-3 text-xs text-renaissance/50 font-serif italic">
-            <span class="w-8 h-px bg-renaissance/20"></span>
+          <div class="mt-6 flex items-center gap-3 text-xs text-gold/50 font-serif italic">
+            <span class="w-8 h-px bg-gold/20"></span>
             "The noblest pleasure is the joy of understanding." — Leonardo da Vinci
           </div>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          <div class="glass-sage rounded-2xl p-6 card-hover border border-emerald/10 text-center">
+          <div class="glass-sage rounded-2xl p-6 card-hover border border-emerald/15 text-center">
             <div class="w-14 h-14 rounded-full bg-emerald/10 mx-auto mb-4 flex items-center justify-center">
               <svg class="w-7 h-7 text-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
             </div>
-            <h3 class="text-lg font-semibold text-ink font-serif">Observation</h3>
-            <p class="text-sm text-ink/60 mt-2">Study ecosystems to find hidden glitches.</p>
+            <h3 class="text-lg font-semibold text-parchment font-serif">Observation</h3>
+            <p class="text-sm text-parchment/60 mt-2">Study ecosystems to find hidden glitches.</p>
           </div>
-          <div class="glass-sage rounded-2xl p-6 card-hover border border-blueprint/10 text-center">
+          <div class="glass-sage rounded-2xl p-6 card-hover border border-blueprint/15 text-center">
             <div class="w-14 h-14 rounded-full bg-blueprint/10 mx-auto mb-4 flex items-center justify-center">
               <svg class="w-7 h-7 text-blueprint" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
             </div>
-            <h3 class="text-lg font-semibold text-ink font-serif">Discovery</h3>
-            <p class="text-sm text-ink/60 mt-2">Uncover patterns and scientific insights.</p>
+            <h3 class="text-lg font-semibold text-parchment font-serif">Discovery</h3>
+            <p class="text-sm text-parchment/60 mt-2">Uncover patterns and scientific insights.</p>
           </div>
-          <div class="glass-sage rounded-2xl p-6 card-hover border border-gold/10 text-center">
+          <div class="glass-sage rounded-2xl p-6 card-hover border border-gold/15 text-center">
             <div class="w-14 h-14 rounded-full bg-gold/10 mx-auto mb-4 flex items-center justify-center">
               <svg class="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
             </div>
-            <h3 class="text-lg font-semibold text-ink font-serif">Innovation</h3>
-            <p class="text-sm text-ink/60 mt-2">Design prototypes that solve real problems.</p>
+            <h3 class="text-lg font-semibold text-parchment font-serif">Innovation</h3>
+            <p class="text-sm text-parchment/60 mt-2">Design prototypes that solve real problems.</p>
           </div>
-          <div class="glass-sage rounded-2xl p-6 card-hover border border-terracotta/10 text-center">
+          <div class="glass-sage rounded-2xl p-6 card-hover border border-terracotta/15 text-center">
             <div class="w-14 h-14 rounded-full bg-terracotta/10 mx-auto mb-4 flex items-center justify-center">
               <svg class="w-7 h-7 text-terracotta" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             </div>
-            <h3 class="text-lg font-semibold text-ink font-serif">Presentation</h3>
-            <p class="text-sm text-ink/60 mt-2">Share your vision with clarity and passion.</p>
+            <h3 class="text-lg font-semibold text-parchment font-serif">Presentation</h3>
+            <p class="text-sm text-parchment/60 mt-2">Share your vision with clarity and passion.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ====== THEME: HIDDEN GLITCHES ====== -->
-    <section id="theme" class="relative py-24 md:py-32" style="background: linear-gradient(180deg, #F5E9D3, #DDE5D0, #F5E9D3);">
-      <div class="absolute inset-0 opacity-[0.02]" style="background-image: repeating-linear-gradient(45deg, #2E8B57, #2E8B57 1px, transparent 1px, transparent 20px);"></div>
+    <section id="theme" class="relative py-24 md:py-32" style="background: linear-gradient(180deg, #0D0D0D, #1B1B1B, #0D0D0D);">
+      <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(45deg, #2E8B57, #2E8B57 1px, transparent 1px, transparent 20px);"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-16">
           <span class="text-emerald text-xs uppercase tracking-[0.3em] font-sans">Eco-Theme</span>
-          <h2 class="text-3xl md:text-5xl font-bold text-ink mt-3 font-serif">
+          <h2 class="text-3xl md:text-5xl font-bold text-parchment mt-3 font-serif">
             The Hidden <span class="gradient-emerald">Glitches</span>
           </h2>
-          <p class="mt-4 text-ink/60 max-w-2xl mx-auto font-sans">Six ecological challenges hiding in plain sight — each one a call for innovation.</p>
+          <p class="mt-4 text-parchment/60 max-w-2xl mx-auto font-sans">Six ecological challenges hiding in plain sight — each one a call for innovation.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          <div class="theme-card glass-parchment rounded-2xl p-5 card-hover border border-renaissance/10 text-center" style="animation: fade-in-up 0.6s ease both;">
-            <div class="w-14 h-14 rounded-full bg-ink/5 mx-auto mb-3 flex items-center justify-center">
-              <svg class="w-7 h-7 text-renaissance" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="theme-card glass-parchment rounded-2xl p-5 card-hover border border-gold/10 text-center" style="animation: fade-in-up 0.6s ease both;">
+            <div class="w-14 h-14 rounded-full bg-gold/5 mx-auto mb-3 flex items-center justify-center">
+              <svg class="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <h3 class="text-base font-semibold text-ink font-serif">Pollution</h3>
-            <p class="text-xs text-ink/60 mt-1">Air, water, and soil contamination disrupting natural cycles.</p>
+            <h3 class="text-base font-semibold text-parchment font-serif">Pollution</h3>
+            <p class="text-xs text-parchment/60 mt-1">Air, water, and soil contamination disrupting natural cycles.</p>
             <span class="ink-annotation block mt-2">"Observe the invisible"</span>
           </div>
           <div class="theme-card glass-parchment rounded-2xl p-5 card-hover border border-blueprint/10 text-center" style="animation: fade-in-up 0.6s ease both;">
             <div class="w-14 h-14 rounded-full bg-blueprint/5 mx-auto mb-3 flex items-center justify-center">
               <svg class="w-7 h-7 text-blueprint" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <h3 class="text-base font-semibold text-ink font-serif">Water Wastage</h3>
-            <p class="text-xs text-ink/60 mt-1">Inefficient usage and mismanagement of freshwater resources.</p>
+            <h3 class="text-base font-semibold text-parchment font-serif">Water Wastage</h3>
+            <p class="text-xs text-parchment/60 mt-1">Inefficient usage and mismanagement of freshwater resources.</p>
             <span class="ink-annotation block mt-2">"Every drop holds knowledge"</span>
           </div>
           <div class="theme-card glass-parchment rounded-2xl p-5 card-hover border border-terracotta/10 text-center" style="animation: fade-in-up 0.6s ease both;">
             <div class="w-14 h-14 rounded-full bg-terracotta/5 mx-auto mb-3 flex items-center justify-center">
               <svg class="w-7 h-7 text-terracotta" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             </div>
-            <h3 class="text-base font-semibold text-ink font-serif">Urban Heat</h3>
-            <p class="text-xs text-ink/60 mt-1">Rising temperatures from concrete landscapes and deforestation.</p>
+            <h3 class="text-base font-semibold text-parchment font-serif">Urban Heat</h3>
+            <p class="text-xs text-parchment/60 mt-1">Rising temperatures from concrete landscapes and deforestation.</p>
             <span class="ink-annotation block mt-2">"Nature's thermometer"</span>
           </div>
-          <div class="theme-card glass-parchment rounded-2xl p-5 card-hover border border-renaissance/10 text-center" style="animation: fade-in-up 0.6s ease both;">
-            <div class="w-14 h-14 rounded-full bg-ink/5 mx-auto mb-3 flex items-center justify-center">
-              <svg class="w-7 h-7 text-renaissance" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          <div class="theme-card glass-parchment rounded-2xl p-5 card-hover border border-gold/10 text-center" style="animation: fade-in-up 0.6s ease both;">
+            <div class="w-14 h-14 rounded-full bg-gold/5 mx-auto mb-3 flex items-center justify-center">
+              <svg class="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
             </div>
-            <h3 class="text-base font-semibold text-ink font-serif">Plastic Accumulation</h3>
-            <p class="text-xs text-ink/60 mt-1">Persistent plastic waste choking ecosystems and food chains.</p>
+            <h3 class="text-base font-semibold text-parchment font-serif">Plastic Accumulation</h3>
+            <p class="text-xs text-parchment/60 mt-1">Persistent plastic waste choking ecosystems and food chains.</p>
             <span class="ink-annotation block mt-2">"The material that lingers"</span>
           </div>
           <div class="theme-card glass-parchment rounded-2xl p-5 card-hover border border-emerald/10 text-center" style="animation: fade-in-up 0.6s ease both;">
             <div class="w-14 h-14 rounded-full bg-emerald/5 mx-auto mb-3 flex items-center justify-center">
               <svg class="w-7 h-7 text-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             </div>
-            <h3 class="text-base font-semibold text-ink font-serif">Energy Inefficiency</h3>
-            <p class="text-xs text-ink/60 mt-1">Excessive consumption and reliance on non-renewable sources.</p>
+            <h3 class="text-base font-semibold text-parchment font-serif">Energy Inefficiency</h3>
+            <p class="text-xs text-parchment/60 mt-1">Excessive consumption and reliance on non-renewable sources.</p>
             <span class="ink-annotation block mt-2">"Power unmeasured"</span>
           </div>
           <div class="theme-card glass-parchment rounded-2xl p-5 card-hover border border-gold/10 text-center" style="animation: fade-in-up 0.6s ease both;">
             <div class="w-14 h-14 rounded-full bg-gold/5 mx-auto mb-3 flex items-center justify-center">
               <svg class="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
             </div>
-            <h3 class="text-base font-semibold text-ink font-serif">Biodiversity Imbalance</h3>
-            <p class="text-xs text-ink/60 mt-1">Disrupted ecosystems threatening species and natural harmony.</p>
+            <h3 class="text-base font-semibold text-parchment font-serif">Biodiversity Imbalance</h3>
+            <p class="text-xs text-parchment/60 mt-1">Disrupted ecosystems threatening species and natural harmony.</p>
             <span class="ink-annotation block mt-2">"Life's delicate web"</span>
           </div>
         </div>
@@ -351,11 +348,11 @@
     </section>
 
     <!-- ====== ROUNDS ====== -->
-    <section id="rounds" class="relative py-24 md:py-32" style="background:#F5E9D3;">
+    <section id="rounds" class="relative py-24 md:py-32" style="background:#0D0D0D;">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <span class="text-emerald text-xs uppercase tracking-[0.3em] font-sans">Competition Structure</span>
-          <h2 class="text-3xl md:text-5xl font-bold text-ink mt-3 font-serif">
+          <h2 class="text-3xl md:text-5xl font-bold text-parchment mt-3 font-serif">
             The <span class="gradient-gold">Rounds</span>
           </h2>
           <div class="w-16 h-0.5 bg-gold mx-auto mt-4"></div>
@@ -364,47 +361,47 @@
         <!-- DAY 1 -->
         <div class="max-w-5xl mx-auto mb-16">
           <div class="flex items-center gap-4 mb-8">
-            <div class="w-12 h-12 rounded-full bg-renaissance flex items-center justify-center text-parchment font-bold font-serif text-lg">I</div>
+            <div class="w-12 h-12 rounded-full bg-gold flex items-center justify-center text-ink font-bold font-serif text-lg">I</div>
             <div>
-              <span class="text-xs text-renaissance/50 uppercase tracking-widest font-sans">Day 1 — July 25</span>
-              <h3 class="text-2xl md:text-3xl font-bold text-ink font-serif">ENIGMA</h3>
+              <span class="text-xs text-gold/50 uppercase tracking-widest font-sans">Day 1 — July 25</span>
+              <h3 class="text-2xl md:text-3xl font-bold text-parchment font-serif">ENIGMA</h3>
             </div>
           </div>
 
           <!-- Round 1 -->
           <div class="glass-parchment rounded-2xl p-6 md:p-8 mb-8 sketch-border">
             <div class="flex items-center gap-3 mb-4">
-              <span class="px-3 py-1 text-xs font-semibold text-parchment bg-emerald rounded-full font-sans">Round 1</span>
-              <span class="text-lg font-serif text-renaissance italic">The Discovery Quest</span>
+              <span class="px-3 py-1 text-xs font-semibold text-ink bg-emerald rounded-full font-sans">Round 1</span>
+              <span class="text-lg font-serif text-gold italic">The Discovery Quest</span>
             </div>
-            <p class="text-ink/70 text-sm mb-6 font-sans">A treasure hunt across the campus where teams decode clues, solve puzzles, and uncover insights about local ecosystem glitches. Each clue reveals a hidden piece of the larger environmental puzzle.</p>
+            <p class="text-parchment/70 text-sm mb-6 font-sans">A treasure hunt across the campus where teams decode clues, solve puzzles, and uncover insights about local ecosystem glitches. Each clue reveals a hidden piece of the larger environmental puzzle.</p>
 
             <div class="grid sm:grid-cols-2 gap-4 mb-6">
-              <div class="glass-sage rounded-xl p-4 border border-emerald/10">
-                <h4 class="text-sm font-semibold text-ink font-serif mb-2">Rules</h4>
+              <div class="glass-sage rounded-xl p-4 border border-emerald/15">
+                <h4 class="text-sm font-semibold text-parchment font-serif mb-2">Rules</h4>
                 <ul class="space-y-1.5">
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>Teams of 3-4 members</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>Follow clue sequence strictly</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>No external assistance</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>Complete within time limit</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>Document findings in sketchbook</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>Teams of 3-4 members</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>Follow clue sequence strictly</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>No external assistance</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>Complete within time limit</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-emerald shrink-0"></span>Document findings in sketchbook</li>
                 </ul>
               </div>
-              <div class="glass-sage rounded-xl p-4 border border-gold/10">
-                <h4 class="text-sm font-semibold text-ink font-serif mb-2">Judging Criteria</h4>
+              <div class="glass-sage rounded-xl p-4 border border-gold/15">
+                <h4 class="text-sm font-semibold text-parchment font-serif mb-2">Judging Criteria</h4>
                 <ul class="space-y-1.5">
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Accuracy of Clues Solved</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Time Management</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Teamwork & Coordination</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Problem-Solving Approach</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Rule Adherence & Fair Play</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Accuracy of Clues Solved</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Time Management</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Teamwork & Coordination</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Problem-Solving Approach</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Rule Adherence & Fair Play</li>
                 </ul>
               </div>
             </div>
 
             <div class="flex items-center gap-2 justify-center">
               <div class="w-2 h-2 rounded-full bg-terracotta opacity-60"></div>
-              <span class="text-2xs text-ink/40 font-mono uppercase tracking-wider">Clue stations hidden across 5 zones</span>
+              <span class="text-2xs text-parchment/40 font-mono uppercase tracking-wider">Clue stations hidden across 5 zones</span>
               <div class="w-2 h-2 rounded-full bg-terracotta opacity-60"></div>
             </div>
           </div>
@@ -412,29 +409,29 @@
           <!-- Round 2 -->
           <div class="glass-parchment rounded-2xl p-6 md:p-8 sketch-border">
             <div class="flex items-center gap-3 mb-4">
-              <span class="px-3 py-1 text-xs font-semibold text-parchment bg-blueprint rounded-full font-sans">Round 2</span>
-              <span class="text-lg font-serif text-renaissance italic">The Innovation Lab</span>
+              <span class="px-3 py-1 text-xs font-semibold text-ink bg-blueprint rounded-full font-sans">Round 2</span>
+              <span class="text-lg font-serif text-gold italic">The Innovation Lab</span>
             </div>
-            <p class="text-ink/70 text-sm mb-6 font-sans">A hands-on workshop where teams translate their discoveries into blueprints. Using provided materials and scientific principles, participants design solutions and build working models.</p>
+            <p class="text-parchment/70 text-sm mb-6 font-sans">A hands-on workshop where teams translate their discoveries into blueprints. Using provided materials and scientific principles, participants design solutions and build working models.</p>
 
             <div class="grid sm:grid-cols-2 gap-4 mb-6">
-              <div class="glass-sage rounded-xl p-4 border border-blueprint/10">
-                <h4 class="text-sm font-semibold text-ink font-serif mb-2">Workshop Structure</h4>
+              <div class="glass-sage rounded-xl p-4 border border-blueprint/15">
+                <h4 class="text-sm font-semibold text-parchment font-serif mb-2">Workshop Structure</h4>
                 <ul class="space-y-1.5">
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-blueprint shrink-0"></span>Problem analysis session</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-blueprint shrink-0"></span>Blueprint & sketch development</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-blueprint shrink-0"></span>Prototype model building</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-blueprint shrink-0"></span>Scientific documentation</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-blueprint shrink-0"></span>Problem analysis session</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-blueprint shrink-0"></span>Blueprint & sketch development</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-blueprint shrink-0"></span>Prototype model building</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-blueprint shrink-0"></span>Scientific documentation</li>
                 </ul>
               </div>
-              <div class="glass-sage rounded-xl p-4 border border-gold/10">
-                <h4 class="text-sm font-semibold text-ink font-serif mb-2">Judging Criteria</h4>
+              <div class="glass-sage rounded-xl p-4 border border-gold/15">
+                <h4 class="text-sm font-semibold text-parchment font-serif mb-2">Judging Criteria</h4>
                 <ul class="space-y-1.5">
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Active Participation</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Understanding of Concepts</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Creativity & Idea Development</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Application of Learning</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Team Interaction & Collaboration</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Active Participation</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Understanding of Concepts</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Creativity & Idea Development</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Application of Learning</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Team Interaction & Collaboration</li>
                 </ul>
               </div>
             </div>
@@ -444,40 +441,40 @@
         <!-- DAY 2 -->
         <div class="max-w-5xl mx-auto">
           <div class="flex items-center gap-4 mb-8">
-            <div class="w-12 h-12 rounded-full bg-emerald flex items-center justify-center text-parchment font-bold font-serif text-lg">II</div>
+            <div class="w-12 h-12 rounded-full bg-emerald flex items-center justify-center text-ink font-bold font-serif text-lg">II</div>
             <div>
-              <span class="text-xs text-renaissance/50 uppercase tracking-widest font-sans">Day 2 — July 26</span>
-              <h3 class="text-2xl md:text-3xl font-bold text-ink font-serif">AAVISHKAR</h3>
+              <span class="text-xs text-gold/50 uppercase tracking-widest font-sans">Day 2 — July 26</span>
+              <h3 class="text-2xl md:text-3xl font-bold text-parchment font-serif">AAVISHKAR</h3>
             </div>
           </div>
 
           <div class="glass-parchment rounded-2xl p-6 md:p-8 sketch-border">
             <div class="flex items-center gap-3 mb-4">
-              <span class="px-3 py-1 text-xs font-semibold text-parchment bg-terracotta rounded-full font-sans">Final Round</span>
-              <span class="text-lg font-serif text-renaissance italic">The Solution Arena</span>
+              <span class="px-3 py-1 text-xs font-semibold text-ink bg-terracotta rounded-full font-sans">Final Round</span>
+              <span class="text-lg font-serif text-gold italic">The Solution Arena</span>
             </div>
-            <p class="text-ink/70 text-sm mb-6 font-sans">Teams present their completed prototypes before a panel of judges. This is where discovery transforms into design — showcasing working models, scientific reasoning, and the potential for real-world impact.</p>
+            <p class="text-parchment/70 text-sm mb-6 font-sans">Teams present their completed prototypes before a panel of judges. This is where discovery transforms into design — showcasing working models, scientific reasoning, and the potential for real-world impact.</p>
 
             <div class="grid sm:grid-cols-2 gap-4">
-              <div class="glass-sage rounded-xl p-4 border border-terracotta/10">
-                <h4 class="text-sm font-semibold text-ink font-serif mb-2">Presentation Format</h4>
+              <div class="glass-sage rounded-xl p-4 border border-terracotta/15">
+                <h4 class="text-sm font-semibold text-parchment font-serif mb-2">Presentation Format</h4>
                 <ul class="space-y-1.5">
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-terracotta shrink-0"></span>Working prototype demonstration</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-terracotta shrink-0"></span>Scientific explanation (5 min)</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-terracotta shrink-0"></span>Judges' Q&A (3 min)</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-terracotta shrink-0"></span>Poster & documentation display</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-terracotta shrink-0"></span>Working prototype demonstration</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-terracotta shrink-0"></span>Scientific explanation (5 min)</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-terracotta shrink-0"></span>Judges' Q&A (3 min)</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-terracotta shrink-0"></span>Poster & documentation display</li>
                 </ul>
               </div>
-              <div class="glass-sage rounded-xl p-4 border border-gold/10">
-                <h4 class="text-sm font-semibold text-ink font-serif mb-2">Judging Criteria</h4>
+              <div class="glass-sage rounded-xl p-4 border border-gold/15">
+                <h4 class="text-sm font-semibold text-parchment font-serif mb-2">Judging Criteria</h4>
                 <ul class="space-y-1.5">
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Innovation & Originality</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Practical Applicability</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Science Behind the Solution</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Feasibility of Prototype</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Clarity & Confidence</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Problem Identification & Understanding</li>
-                  <li class="flex items-center gap-2 text-xs text-ink/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Model Design & Working</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Innovation & Originality</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Practical Applicability</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Science Behind the Solution</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Feasibility of Prototype</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Clarity & Confidence</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Problem Identification & Understanding</li>
+                  <li class="flex items-center gap-2 text-xs text-parchment/60"><span class="w-1 h-1 rounded-full bg-gold shrink-0"></span>Model Design & Working</li>
                 </ul>
               </div>
             </div>
@@ -487,11 +484,11 @@
     </section>
 
     <!-- ====== REGISTRATION ====== -->
-    <section id="register-section" class="relative py-24 md:py-32" style="background: linear-gradient(180deg, #F5E9D3, #DDE5D0);">
+    <section id="register-section" class="relative py-24 md:py-32" style="background: linear-gradient(180deg, #0D0D0D, #1B1B1B);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <span class="text-emerald text-xs uppercase tracking-[0.3em] font-sans">Registration</span>
-          <h2 class="text-3xl md:text-5xl font-bold text-ink mt-3 font-serif">
+          <h2 class="text-3xl md:text-5xl font-bold text-parchment mt-3 font-serif">
             Join the <span class="gradient-gold">Innovation</span>
           </h2>
           <div class="w-16 h-0.5 bg-gold mx-auto mt-4"></div>
@@ -501,37 +498,37 @@
           <div class="w-16 h-16 rounded-full bg-emerald/20 mx-auto mb-4 flex items-center justify-center">
             <svg class="w-8 h-8 text-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           </div>
-          <h3 class="text-2xl font-bold text-ink mb-2 font-serif">Innovation Registered!</h3>
-          <p class="text-ink/60">Your team has been registered. Check your email for your innovation kit.</p>
+          <h3 class="text-2xl font-bold text-parchment mb-2 font-serif">Innovation Registered!</h3>
+          <p class="text-parchment/60">Your team has been registered. Check your email for your innovation kit.</p>
         </div>
 
         <form id="reg-form" class="max-w-2xl mx-auto glass-parchment rounded-2xl p-4 sm:p-6 md:p-8 space-y-5 sketch-border" onsubmit="return handleSubmit(event)">
           <div class="grid md:grid-cols-2 gap-5">
             <div class="md:col-span-2">
-              <label class="block text-sm text-renaissance mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">Team Name</label>
-              <input id="teamName" type="text" class="w-full px-4 py-3 bg-parchment border border-renaissance/20 rounded-xl text-ink placeholder-ink/30 focus:border-emerald focus:outline-none transition-colors" placeholder="Enter your team name" required />
+              <label class="block text-sm text-gold mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">Team Name</label>
+              <input id="teamName" type="text" class="w-full px-4 py-3 bg-ink/60 border border-gold/20 rounded-xl text-parchment placeholder-parchment/30 focus:border-emerald focus:outline-none transition-colors" placeholder="Enter your team name" required />
               <p id="teamName-error" class="text-terracotta text-xs mt-1 hidden">Team name required</p>
             </div>
 
             <div class="md:col-span-2">
-              <label class="block text-sm text-renaissance mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">Team Members & Grades</label>
+              <label class="block text-sm text-gold mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">Team Members & Grades</label>
               <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
-                <input id="m1-name" type="text" class="flex-1 px-4 py-3 bg-parchment border border-renaissance/20 rounded-xl text-ink placeholder-ink/30 focus:border-emerald focus:outline-none transition-colors" placeholder="Member 1 name" required />
-                <select id="m1-grade" class="w-full sm:w-28 px-3 py-3 bg-parchment border border-renaissance/20 rounded-xl text-[#808894] focus:border-emerald focus:outline-none transition-colors text-sm">
+                <input id="m1-name" type="text" class="flex-1 px-4 py-3 bg-ink/60 border border-gold/20 rounded-xl text-parchment placeholder-parchment/30 focus:border-emerald focus:outline-none transition-colors" placeholder="Member 1 name" required />
+                <select id="m1-grade" class="w-full sm:w-28 px-3 py-3 bg-ink/60 border border-gold/20 rounded-xl text-[#808894] focus:border-emerald focus:outline-none transition-colors text-sm">
                   <option value="">Grade</option>
                   <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
                 </select>
               </div>
               <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
-                <input id="m2-name" type="text" class="flex-1 px-4 py-3 bg-parchment border border-renaissance/20 rounded-xl text-ink placeholder-ink/30 focus:border-emerald focus:outline-none transition-colors" placeholder="Member 2 name" />
-                <select id="m2-grade" class="w-full sm:w-28 px-3 py-3 bg-parchment border border-renaissance/20 rounded-xl text-[#808894] focus:border-emerald focus:outline-none transition-colors text-sm">
+                <input id="m2-name" type="text" class="flex-1 px-4 py-3 bg-ink/60 border border-gold/20 rounded-xl text-parchment placeholder-parchment/30 focus:border-emerald focus:outline-none transition-colors" placeholder="Member 2 name" />
+                <select id="m2-grade" class="w-full sm:w-28 px-3 py-3 bg-ink/60 border border-gold/20 rounded-xl text-[#808894] focus:border-emerald focus:outline-none transition-colors text-sm">
                   <option value="">Grade</option>
                   <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
                 </select>
               </div>
               <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                <input id="m3-name" type="text" class="flex-1 px-4 py-3 bg-parchment border border-renaissance/20 rounded-xl text-ink placeholder-ink/30 focus:border-emerald focus:outline-none transition-colors" placeholder="Member 3 name" />
-                <select id="m3-grade" class="w-full sm:w-28 px-3 py-3 bg-parchment border border-renaissance/20 rounded-xl text-[#808894] focus:border-emerald focus:outline-none transition-colors text-sm">
+                <input id="m3-name" type="text" class="flex-1 px-4 py-3 bg-ink/60 border border-gold/20 rounded-xl text-parchment placeholder-parchment/30 focus:border-emerald focus:outline-none transition-colors" placeholder="Member 3 name" />
+                <select id="m3-grade" class="w-full sm:w-28 px-3 py-3 bg-ink/60 border border-gold/20 rounded-xl text-[#808894] focus:border-emerald focus:outline-none transition-colors text-sm">
                   <option value="">Grade</option>
                   <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
                 </select>
@@ -540,32 +537,32 @@
             </div>
 
             <div class="md:col-span-2">
-              <label class="block text-sm text-renaissance mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">School</label>
-              <input id="school" type="text" class="w-full px-4 py-3 bg-parchment border border-renaissance/20 rounded-xl text-ink placeholder-ink/30 focus:border-emerald focus:outline-none transition-colors" placeholder="School name" required />
+              <label class="block text-sm text-gold mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">School</label>
+              <input id="school" type="text" class="w-full px-4 py-3 bg-ink/60 border border-gold/20 rounded-xl text-parchment placeholder-parchment/30 focus:border-emerald focus:outline-none transition-colors" placeholder="School name" required />
               <p id="school-error" class="text-terracotta text-xs mt-1 hidden">School required</p>
             </div>
 
             <div class="md:col-span-2">
-              <label class="block text-sm text-renaissance mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">Email</label>
-              <input id="email" type="email" class="w-full px-4 py-3 bg-parchment border border-renaissance/20 rounded-xl text-ink placeholder-ink/30 focus:border-emerald focus:outline-none transition-colors" placeholder="your@email.com" required />
+              <label class="block text-sm text-gold mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">Email</label>
+              <input id="email" type="email" class="w-full px-4 py-3 bg-ink/60 border border-gold/20 rounded-xl text-parchment placeholder-parchment/30 focus:border-emerald focus:outline-none transition-colors" placeholder="your@email.com" required />
               <p id="email-error" class="text-terracotta text-xs mt-1 hidden">Valid email required</p>
             </div>
 
             <div class="md:col-span-2">
-              <label class="block text-sm text-renaissance mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">Phone Number</label>
-              <input id="phone" type="tel" class="w-full px-4 py-3 bg-parchment border border-renaissance/20 rounded-xl text-ink placeholder-ink/30 focus:border-emerald focus:outline-none transition-colors" placeholder="+91 1234 567890" required />
+              <label class="block text-sm text-gold mb-1.5 font-sans text-xs uppercase tracking-wider font-semibold">Phone Number</label>
+              <input id="phone" type="tel" class="w-full px-4 py-3 bg-ink/60 border border-gold/20 rounded-xl text-parchment placeholder-parchment/30 focus:border-emerald focus:outline-none transition-colors" placeholder="+91 1234 567890" required />
               <p id="phone-error" class="text-terracotta text-xs mt-1 hidden">Phone required</p>
             </div>
           </div>
 
           <p id="submit-error" class="text-terracotta text-sm text-center hidden">Failed to submit. Please try again.</p>
-          <button id="submit-btn" type="submit" class="w-full py-4 text-lg font-semibold text-parchment bg-emerald rounded-xl hover:bg-emerald/90 transition-all duration-300 glow-emerald">Register Your Innovation</button>
+          <button id="submit-btn" type="submit" class="w-full py-4 text-lg font-semibold text-ink bg-emerald rounded-xl hover:bg-emerald/90 transition-all duration-300 glow-emerald">Register Your Innovation</button>
         </form>
       </div>
     </section>
 
     <!-- ====== FINAL ====== -->
-    <section class="relative py-24 md:py-32" style="background:#1B1B1B;">
+    <section class="relative py-24 md:py-32" style="background:#050505;">
       <div class="absolute inset-0 opacity-[0.04]" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 30px, #C9A227 30px, #C9A227 31px);"></div>
       <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
         <span class="text-gold text-xs uppercase tracking-[0.3em] font-sans">The Finale</span>
@@ -580,9 +577,9 @@
       </div>
     </section>
 
-    <footer class="py-8" style="background:#1B1B1B; border-top: 1px solid rgba(201,162,39,0.1);">
+    <footer class="py-8" style="background:#050505; border-top: 1px solid rgba(201,162,39,0.1);">
       <div class="max-w-7xl mx-auto px-4 text-center">
-        <p class="text-lg font-bold text-parchment font-serif">INNOVISTA</p>
+        <p class="text-lg font-bold text-gold font-serif">INNOVISTA</p>
         <p class="text-xs text-gold/40 font-serif italic mt-1">From Discovery to Design</p>
         <p class="text-xs text-parchment/20 mt-4">&copy; 2026 Innovation Club. All rights reserved.</p>
       </div>

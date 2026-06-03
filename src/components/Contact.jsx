@@ -52,14 +52,31 @@ export default function Contact() {
           </motion.div>
         </div>
 
-        <div className="mt-12 max-w-3xl mx-auto glass rounded-2xl p-4 h-48 flex items-center justify-center">
-          <div className="text-center">
-            <HiLocationMarker className="w-8 h-8 text-neon-emerald/50 mx-auto mb-2" />
-            <p className="text-silver-mist/40 text-sm">Map will be displayed here</p>
-            <p className="text-frosted-mint/60 text-xs mt-1">School Campus - Innovation Block</p>
+        <div className="mt-12 max-w-3xl mx-auto glass rounded-2xl overflow-hidden">
+          <div className="dark-map">
+          <iframe
+            title="Venue Location"
+            src="https://www.google.com/maps?q=A.B.+Road,+Rau,+opposite+Akashwani,+Indore,+Madhya+Pradesh+453331&output=embed"
+            width="100%"
+            height="300"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          </div>
+          <div className="px-4 py-3 border-t border-neon-emerald/10 text-center">
+            <a
+              href="https://maps.app.goo.gl/5h3E6xWwcS3nPSmH9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-neon-emerald hover:underline"
+            >
+              Open in Google Maps ↗
+            </a>
           </div>
         </div>
-      </div>
+        </div>
 
       <footer className="mt-24 pt-12 border-t border-neon-emerald/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
