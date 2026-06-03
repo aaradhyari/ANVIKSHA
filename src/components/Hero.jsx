@@ -55,10 +55,10 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <a
-            href="#register"
+            href="#events"
             className="px-8 py-4 text-lg font-semibold text-cosmic-navy bg-neon-emerald rounded-xl hover:bg-neon-emerald/90 transition-all duration-300 neon-glow"
           >
-            Register Now
+            Explore Events
           </a>
           <a
             href="#about"

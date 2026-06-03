@@ -7,12 +7,14 @@ const events = [
     title: 'Event 1: ABC',
     summary: 'A thrilling innovation challenge where participants decode complex scientific mysteries through collaborative research and creative problem-solving.',
     link: '/event1.html',
+    registerLabel: 'Register for ABC',
   },
   {
     icon: HiCubeTransparent,
     title: 'Event 2: CBA',
     summary: 'An advanced engineering and design sprint where teams build prototypes to solve real-world sustainability challenges under time constraints.',
     link: '/event2.html',
+    registerLabel: 'Register for CBA',
   },
 ];
 
@@ -50,7 +52,7 @@ export default function Events() {
               <h3 className="text-xl font-bold text-frosted-mint mb-3">{event.title}</h3>
               <p className="text-silver-mist/70 leading-relaxed mb-5">{event.summary}</p>
               <span className="inline-flex items-center gap-2 text-sm text-neon-emerald font-medium group-hover:gap-3 transition-all">
-                Learn More
+                {event.registerLabel}
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
