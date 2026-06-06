@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 
 const links = [
-  { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Events', href: '#events' },
   { label: 'Rules', href: '#rules' },
   { label: 'Judging', href: '#judging' },
   { label: 'Workshop', href: '#workshop' },
   { label: 'Team', href: '#team' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
