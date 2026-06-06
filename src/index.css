@@ -52,6 +52,34 @@
   .dark-map {
     filter: invert(0.9) hue-rotate(180deg);
   }
+  .animate-border-glow {
+    position: relative;
+  }
+  .animate-border-glow::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #42E89B, #1F3B2E, #E89A73, #42E89B);
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: gradient-shift 4s ease infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .animate-border-glow:hover::after {
+    opacity: 1;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  .pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
 }
 
 ::-webkit-scrollbar {

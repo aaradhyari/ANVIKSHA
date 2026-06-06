@@ -9,10 +9,12 @@ import JudgingCriteria from './components/JudgingCriteria';
 import Workshop from './components/Workshop';
 import Team from './components/Team';
 import Contact from './components/Contact';
+import LoadingScreen from './components/LoadingScreen';
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-cosmic-navy overflow-hidden">
+    <div className="relative min-h-screen bg-cosmic-navy overflow-x-hidden">
+      <LoadingScreen />
       <ParticlesBackground />
       <GlowCursor />
       <Navbar />
